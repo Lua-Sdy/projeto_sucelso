@@ -20,26 +20,48 @@ button{
     display: flex;
     justify-content: center;
     align-items: center;
+    text-align: center;
     flex-direction: column;
-}
- .center input{
+    width: 40%;
+    margin: 0 auto;
+    box-shadow: 0px 0px 0px rgba(3, 7, 18, 0.35),
+        0px 0px 1px rgba(3, 7, 18, 0.35),
+        0px 0px 2px rgba(3, 7, 18, 0.35),
+        0px 0px 3px rgba(3, 7, 18, 0.35),
+        0px 0px 4px rgba(3, 7, 18, 0.35),
+        0px 0px 6px rgba(3, 7, 18, 0.35),
+        0px 0px 8px rgba(3, 7, 18, 0.35),
+        0px 0px 11px rgba(3, 7, 18, 0.35),
+        0px 0px 14px rgba(3, 7, 18, 0.35),
+        0px 0px 17px rgba(3, 7, 18, 0.35);
+ 
+.center input{
     border-radius:7px;
     border: 3px solid #ccc;
     box-sizing: border-box;
-    margin: 10px;
+    margin: 0 auto;
     padding: 10px;
 }
 .center label{
-    margin: 5px;
+    margin: 0px;
     justify-items: left;
     flex-direction: 
 }
 .center button{
-    border-radius: 5px;
-    border: 1px solid #ccc;
+    transform: scale(3.2);
+    border-radius: 15px;
+    border: 5px solid #ccc;
     box-sizing: border-box;
     margin: 5px;
     padding: 5px;
+    -webkit-border-radius: 15;
+    -moz-border-radius: 15;
+    -ms-border-radius: 15;
+    -o-border-radius: 15;
+    -webkit-transform: scale(3.2);
+    -moz-transform: scale(3.2);
+    -ms-transform: scale(3.2);
+    -o-transform: scale(3.2);
 }
 .center button:hover{
     transition-duration: 0.3s;
@@ -48,3 +70,36 @@ button{
     border: #fca00c solid 2px;
     border-radius: 8px;
     cursor: pointer;
+}
+.center p{
+    color: #0e0f0f;
+    padding-bottom: 15px;
+    margin-bottom: 10px;
+    
+}
+#botao-login{
+
+    padding: 10px;
+    background-color: #dbd8d2; /* Cor do botão como no seu estilo */
+    color: #3085d1; /* Texto azul */
+    border: 2px solid #3085d1; /* Borda azul */
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 15px;
+    transition: all 0.3s; /* Efeito hover suave */
+    margin-bottom: 25px;
+}
+#botao-login:hover{
+    background-color: #3085d1; /* Azul */
+    color: #fca00c; /* Texto laranja */
+    border-color: #fca00c; /* Borda laranja */
+}
+#titulo{
+    color: #141414;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 25px;
+}

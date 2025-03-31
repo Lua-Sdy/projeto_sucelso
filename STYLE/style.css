@@ -30,7 +30,7 @@
     align-items: center;
     box-sizing: border-box;
     overflow: hidden;
-    background-color: #fca00c81;
+    background-color: #f1b95dfb;
     width: 100%;
     padding: 10px;
     height: 70px;
@@ -105,7 +105,7 @@ main h3 {
     align-items: center;
     border: #3086d16b 3px solid;
     color: #085da7;
-    padding: 15px;
+    padding: 10px;
     border-radius: 10px;
     font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
     /* https://smoothshadows.com/#djEsMywxMCwwLjM1LDE3LDAsMCwjMDMwNzEyLCNmM2Y0ZjYsI2ZmZmZmZiwz */
@@ -162,7 +162,7 @@ main h3 {
 }
 
 #rodape {
-    margin-top: auto;
+    margin-top: 25px;
     height: auto;
     display: flex;
     flex-direction: row;
@@ -217,3 +217,4 @@ main h3 {
     padding-left: 0;
     transform: scale(1.3);
 }
+
