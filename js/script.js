@@ -8,3 +8,5 @@ const botaoCadastroDocente = document.querySelector('cdtdocente');
 botaoCadastroDocente.addEventListener('click', () => {
     window.location.href = 'cadastro.html';
 });
+
+//aasdasdadasda
