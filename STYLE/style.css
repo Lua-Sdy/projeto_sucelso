@@ -1,0 +1,219 @@
+* {
+    padding: 0;
+    margin: 0;
+    font: size 30px;
+    ;
+}
+
+.organizacao-geral {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    text-align: center;
+    background-color: rgb(214, 214, 236);
+    color: black;
+    font-size: 18px;
+    position: relative;
+    padding-bottom: 100;
+}
+
+#cabecalho {
+
+    color: #3085d1;
+    top: 0;
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+    position: fixed;
+    text-align: center;
+    align-items: center;
+    box-sizing: border-box;
+    overflow: hidden;
+    background-color: #fca00c81;
+    width: 100%;
+    padding: 10px;
+    height: 70px;
+    margin-bottom: 5%;
+    gap: 15px;
+    border-radius: 6px;
+}
+
+#cabecalho img {
+
+    border-radius: 6px;
+    max-height: 85px;
+    padding: 5px;
+
+}
+
+#cabecalho h1 {
+
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+
+main {
+    padding-top: 80px;
+
+}
+
+main h3 {
+    margin-top: 35px;
+    margin-left: 35px;
+    text-align: left;
+}
+
+#login__container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100vw;
+    height: 100vh;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin: auto 20px ;
+}
+
+#login__container img {
+    height: 50%;
+    width: auto;
+    padding-top: 1%;
+    opacity: 0.6;
+    display: block;
+}
+
+.login {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #e0e0e0;
+    margin: 0 auto;
+    width: 300px;
+    height: auto;
+    justify-content: center;
+    align-items: center;
+    border: #3086d16b 3px solid;
+    color: #085da7;
+    padding: 15px;
+    border-radius: 10px;
+    font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+    /* https://smoothshadows.com/#djEsMywxMCwwLjM1LDE3LDAsMCwjMDMwNzEyLCNmM2Y0ZjYsI2ZmZmZmZiwz */
+    box-shadow: 0px 0px 0px rgba(3, 7, 18, 0.35),
+        0px 0px 1px rgba(3, 7, 18, 0.35),
+        0px 0px 2px rgba(3, 7, 18, 0.35),
+        0px 0px 3px rgba(3, 7, 18, 0.35),
+        0px 0px 4px rgba(3, 7, 18, 0.35),
+        0px 0px 6px rgba(3, 7, 18, 0.35),
+        0px 0px 8px rgba(3, 7, 18, 0.35),
+        0px 0px 11px rgba(3, 7, 18, 0.35),
+        0px 0px 14px rgba(3, 7, 18, 0.35),
+        0px 0px 17px rgba(3, 7, 18, 0.35);
+
+}
+
+
+.login input {
+    margin: 5px;
+    padding: 10px;
+    font-size: 15px;
+    color: #3085d1;
+    background-color: #eeebe5;
+    border: #3085d1 solid 2px;
+    border-radius: 8px;
+}
+
+.login p {
+    font-weight: bold;
+    font-size: 20px;
+    padding-bottom: 5px;
+}
+
+.login button {
+    margin-top: 5px;
+    padding: 10px;
+    font-size: 15px;
+    color: #3085d1;
+    background-color: #d8d2c6;
+    border: #3085d1 solid 2px;
+    border-radius: 8px;
+    cursor: pointer;
+
+
+}
+
+.login button:hover {
+    transition-duration: 0.3s;
+    color: #fca00c;
+    background-color: #3085d1;
+    border: #fca00c solid 2px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+#rodape {
+    margin-top: auto;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    background-color: #3085d1;
+
+    color: #fca00c;
+    justify-content: space-between;
+    padding: 10px 20px;
+    bottom: 0;
+    position: relative;
+    border-radius: 5px;
+
+
+}
+
+.links__git {
+    display: flex;
+    align-items: center;
+}
+
+.links__git ul {
+    display: flex;
+    list-style-type: none;
+    gap: 15px;
+    margin: 0;
+    padding: 0;
+}
+
+.links__git a {
+    text-decoration: none;
+    color: #fca00c;
+}
+
+.links__git a:hover {
+    border: #1b357e solid;
+    color: white;
+    background-color: #3085d1;
+    border-radius: 5px;
+}
+
+#rodape p {
+    flex-grow: 1;
+    text-align: center;
+    margin: 0;
+    white-space: nowrap;
+
+}
+
+#rodape img {
+    max-height: 40px;
+    padding-left: 0;
+    transform: scale(1.3);
+}

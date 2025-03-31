@@ -1,0 +1,191 @@
+/* ============================================= */
+/* RESET E CONFIGURAÇÕES GERAIS */
+/* ============================================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; /* Faz padding e border serem incluídos no tamanho total */
+}
+
+/* ============================================= */
+/* ESTRUTURA PRINCIPAL */
+/* ============================================= */
+.bodycadastro {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: rgb(214, 214, 236); /* Cor de fundo do seu estilo */
+    min-height: 100vh; /* Garante que o body ocupe pelo menos a tela toda */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px; /* Espaço nas laterais em mobile */
+    justify-items: center;
+}
+
+/* Container principal do formulário */
+.cadastro-container {
+    
+    width: 100%;
+    max-width: 500px; /* Largura máxima para não ficar muito largo */
+    background-color:  rgb(214, 214, 236); /* Cor de fundo do container como no seu estilo */
+    padding: 40px 30px;
+    border-radius: 10px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    border: 3px solid #1313146b; /* Borda azul com transparência como no seu estilo */
+    
+    margin: auto;
+    box-shadow: 0px 0px 0px rgba(3, 7, 18, 0.35),
+    0px 0px 1px rgba(3, 7, 18, 0.35),
+    0px 0px 2px rgba(3, 7, 18, 0.35),
+    0px 0px 3px rgba(3, 7, 18, 0.35),
+    0px 0px 4px rgba(3, 7, 18, 0.35),
+    0px 0px 6px rgba(3, 7, 18, 0.35),
+    0px 0px 8px rgba(3, 7, 18, 0.35),
+    0px 0px 11px rgba(3, 7, 18, 0.35),
+    0px 0px 14px rgba(3, 7, 18, 0.35),
+    0px 0px 17px rgba(3, 7, 18, 0.35);
+}
+
+/* ============================================= */
+/* CABEÇALHO DO FORMULÁRIO */
+/* ============================================= */
+.cadastro-titulo {
+    color: #070707; /* Azul do seu tema */
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+/* ============================================= */
+/* ESTILOS DOS CAMPOS DO FORMULÁRIO */
+/* ============================================= */
+.form-grupo {
+    margin-bottom: 20px; /* Espaço entre os campos */
+}
+
+.form-grupo label {
+    display: block;
+    margin-bottom: 8px;
+    color: #0f0f0f; /* Azul do seu tema */
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.form-grupo input {
+    width: 100%;
+    padding: 15px;
+    border: 2px solid #175388; /* Borda azul */
+    border-radius: 8px; /* Bordas arredondadas como no seu estilo */
+    background-color: #eeebe5; /* Cor de fundo dos inputs como no seu estilo */
+    font-size: 16px;
+    color: #085da7; /* Cor do texto como no seu estilo */
+    transition: all 0.3s; /* Suaviza as transições */
+}
+
+/* Efeito quando o input está em foco */
+.form-grupo input:focus {
+    outline: none;
+    border-color: #fca00c; /* Laranja do seu tema */
+    box-shadow: 0 0 0 3px rgba(252, 160, 12, 0.2); /* Sombra sutil */
+}
+
+/* ============================================= */
+/* ESTILO DO BOTÃO */
+/* ============================================= */
+.botao-cadastro {
+    width: 100%;
+    padding: 15px;
+    background-color: #dbd8d2; /* Cor do botão como no seu estilo */
+    color: #3085d1; /* Texto azul */
+    border: 2px solid #3085d1; /* Borda azul */
+    border-radius: 8px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: all 0.3s; /* Efeito hover suave */
+}
+
+/* Efeito hover do botão (igual ao seu estilo) */
+.botao-cadastro:hover {
+    background-color: #3085d1; /* Azul */
+    color: #fca00c; /* Texto laranja */
+    border-color: #fca00c; /* Borda laranja */
+}
+
+/* ============================================= */
+/* ELEMENTOS ADICIONAIS */
+/* ============================================= */
+/* Link para login (caso queira adicionar) */
+.link-login {
+    text-align: center;
+    margin-top: 20px;
+    color: #3085d1;
+}
+
+.link-login a {
+    color: #fca00c; /* Laranja do seu tema */
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.link-login a:hover {
+    text-decoration: underline;
+}
+
+/* Mensagens de erro (caso queira validar) */
+.mensagem-erro {
+    color: #d63031;
+    font-size: 14px;
+    margin-top: 5px;
+    display: none; /* Escondido por padrão */
+}
+
+/* ============================================= */
+/* RESPONSIVIDADE */
+/* ============================================= */
+@media (max-width: 480px) {
+    .cadastro-container {
+        padding: 30px 20px;
+    }
+    
+    .cadastro-titulo {
+        font-size: 24px;
+    }
+    
+    .form-grupo input,
+    .botao-cadastro {
+        padding: 12px;
+    }
+}
+.botao-voltar {
+    width: 100%;
+    padding: 15px;
+    background-color: #dbd8d2; /* Cor do botão como no seu estilo */
+    color: #3085d1; /* Texto azul */
+    border: 2px solid #3085d1; /* Borda azul */
+    border-radius: 8px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: all 0.3s; /* Efeito hover suave */
+    text-decoration: none; /* Garante que não tenha estilo de link */
+}
+
+/* Efeitos hover */
+.botao-cadastrar:hover {
+    background-color: #e69100; /* Tom mais escuro do laranja */
+}
+
+.botao-voltar:hover {
+    background-color: #1b357e; /* Tom mais escuro do azul */
+}
+.botao-voltar:focus {
+    outline: 2px solid #fca00c; /* Seu laranja */
+    outline-offset: 2px;
+} 
+.botao-voltar:focus {
+    outline: 2px solid #fca00c; /* Seu laranja */
+    outline-offset: 2px;
+}

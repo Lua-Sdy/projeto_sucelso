@@ -1,0 +1,50 @@
+input{
+    border-radius:7px;
+    border: 3px solid #ccc;
+    box-sizing: border-box;
+    margin: 10px;
+    padding: 10px;
+}
+label{
+    margin: 5px;
+}
+button{
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    margin: 5px;
+    padding: 5px;
+}
+
+.center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+ .center input{
+    border-radius:7px;
+    border: 3px solid #ccc;
+    box-sizing: border-box;
+    margin: 10px;
+    padding: 10px;
+}
+.center label{
+    margin: 5px;
+    justify-items: left;
+    flex-direction: 
+}
+.center button{
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    margin: 5px;
+    padding: 5px;
+}
+.center button:hover{
+    transition-duration: 0.3s;
+    color: #fca00c;
+    background-color: #3085d1;
+    border: #fca00c solid 2px;
+    border-radius: 8px;
+    cursor: pointer;
