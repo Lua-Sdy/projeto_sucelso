@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,18 +11,17 @@
 </head>
 
 <body class="organizacao-geral">
+    <!-- CABEÇALHO (mantido igual) -->
     <header id="cabecalho">
         <img src="../IMG/logo_completa.png" alt="logo da empresa">
-        <h1>
-            Senai-Sucelso
-        </h1>
+        <h1>Senai-Sucelso</h1>
     </header>
 
     <main>
         <h3>Bem vindo(a) <span id="nomeUsuario"></span>!</h3>
 
+        <!-- CONTAINER DE PESQUISA (mantido igual) -->
         <div class="pesquisa-container">
-            <!--local de pesquisar de professor,etc-->
             <div class="form-pesquisa">
                 <label for="nomePesquisa">Nome</label>
                 <input type="text" id="nomePesquisa" placeholder="Digite o nome">
@@ -31,46 +29,40 @@
             </div>
         </div>
 
+        <!-- CONTAINER DE RESULTADOS (alterações comentadas abaixo) -->
         <div class="pesquisa-container2">
-            <!--Mostar o pesquisado e todas as inforções sobre-->
-            <div class="form-pesquisa">
-                <label for="nome">Nome</label>
-                <input type="text" id="nomepesquisado" placeholder= "NOME">
+            <!-- ADICIONADO: div wrapper para agrupar os campos -->
+            <div class="resultados-wrapper">
+                <div class="form-pesquisa">
+                    <label for="nome">Nome</label>
+                    <input type="text" id="nomepesquisado" placeholder="NOME">
+                </div>
+
+                <div class="form-pesquisa">
+                    <label for="email">Email</label>
+                    <input type="text" id="email" placeholder="EMAIL">
+                </div>
+
+                <div class="form-pesquisa">
+                    <label for="AREA">Area</label>
+                    <input type="text" id="Area" placeholder="Area">
+                </div>
+
+                <div class="form-pesquisa">
+                    <label for="Telefone">Telefone</label>
+                    <input type="text" id="Telefone" placeholder="TELEFONE">
+                </div>
+                
+                <!-- ADICIONADO: div para agrupar os botões -->
+                <div class="botoes-acoes">
+                    <button>Excluir</button>
+                    <button>Salvar</button>
+                </div>
             </div>
-
-            <div class="form-pesquisa">
-                <label for="email">Email</label>
-                <input type="text" id="email" placeholder= "EMAIIL">
-            </div>
-
-            <div class="form-pesquisa">
-                <label for="AREA">Area</label>
-                <input type="text" id="Area" placeholder= "Area">
-            </div>
-
-            <div class="form-pesquisa">
-                <label for="Telefone">Telefone</label>
-                <input type="text" id="Telefone" placeholder= "TELEFONE">
-            </div>
-            
-            <button>Excluir</button>
-            <button>Salvar</button>
-
-
-
-
         </div>
-
-
-
-
     </main>
 
-
-
-
-
-
+    <!-- RODAPÉ (mantido igual) -->
     <footer id="rodape">
         <div class="links__git">
             <ul>
@@ -86,7 +78,5 @@
     </footer>
 
     <script src="../JS/script.js"></script>
-
 </body>
-
 </html>

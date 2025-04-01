@@ -1,108 +1,122 @@
-/* conteiner de pesquisa */
+/* ESTILOS EXISTENTES (mantidos intactos) */
 * {
     margin: 0;
     padding: 0;
-    box-sizing: border-box; /* Faz padding e border serem incluídos no tamanho total */
+    box-sizing: border-box;
 }
+
 .pesquisa-container {
-        
-       /* margin: 0 auto;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        margin-top: 20px;
-        border-radius: 5px;
-        border: 50px #fff;*/
+    background-color: rgb(214, 214, 236);
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    width: 100%;
+    max-width: 500px;
+    margin-left: 40px;
+}
 
-        background-color: rgb(214, 214, 236);
-        border-radius: 8px;
-        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-        padding: 30px;
-        width: 100%;
-        max-width: 500px;
-        margin-left: 40px;
+.form-pesquisa {
+    display: flex;
+    align-items: center;
+}
 
-    }
-    
-    /* estilo do formulário de pesquisa */
-    .form-pesquisa {
-        display: flex;
-        align-items: center;
-    }
-    
-    /* estilo do campo de pesquisa */
-    .form-pesquisa input {
-        padding: 10px;
-        border: 1px solid #ccc;
-        border-radius: 10px;
-        margin-right: 10px;
-        font-size: 15px;
-        margin-bottom: 10px;
-        width: 100%;
-    }
-    .form-pesquisa label {
-        font-weight: bold;
-        margin-right: 10px;
-        
-    }
-    
-    /* estilo do botão de pesquisa */
-    .form-pesquisa button {
-        padding: 10px 20px;
-        background-color: #f7f6be;
-        color: #090909;
-        border:#140e0e;
-        border-radius: 5px;
-        cursor: pointer;
-        width: 100%;
-        
-    }
-    .form-pesquisa button:hover {
-        padding: 10px 20px;
-        background-color: #779ff5;
-        color: #fff;
-        border:#090909;
-        width: 100%;
+.form-pesquisa input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    margin-right: 10px;
+    font-size: 15px;
+    margin-bottom: 10px;
+    width: 100%;
+}
 
-    }
-    .pesquisa-container2 {
+.form-pesquisa label {
+    font-weight: bold;
+    margin-right: 10px;
+}
 
-        
-         background-color: rgb(214, 214, 236);
-         border-radius: 8px;
-         box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-         padding: 30px;
-         width: 85%;
-         margin-left: 40px;
-         justify-items: center;
-         margin-top: 30px;
-         align-items: center;
-         justify-items: center;
-         text-align: center;
-         display: flex;
-         align-items: stretch;
-         max-width: 85%;
-         flex-direction:row;
-         flex-wrap: wrap;
-         justify-content: space-between;
- 
-     }
-     /*botões de excluir e editar*/
-     .pesquisa-container2 button {
-        padding: 10px 20px;
-        background-color: #f7f6be;
-        color: #090909;
-        border:#140e0e;
-        border-radius: 5px;
-        cursor: pointer;
-        margin-right: 10px;
-        width: 10%;
-        
-    }
-    .pesquisa-container2 button:hover {
-        padding: 10px 20px;
-        background-color: #779ff5;
-        color: #fff;
-        border:#090909;
+.form-pesquisa button {
+    padding: 10px 20px;
+    background-color: #f7f6be;
+    color: #090909;
+    border:#140e0e;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%;
+}
 
-    }
+.form-pesquisa button:hover {
+    padding: 10px 20px;
+    background-color: #779ff5;
+    color: #fff;
+    border:#090909;
+    width: 100%;
+}
+
+.pesquisa-container2 {
+    background-color: rgb(214, 214, 236);
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    width: 85%;
+    margin-left: 40px;
+    margin-top: 30px;
+}
+
+.pesquisa-container2 button {
+    padding: 10px 20px;
+    background-color: #f7f6be;
+    color: #090909;
+    border:#140e0e;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-right: 10px;
+    width: 10%;
+}
+
+.pesquisa-container2 button:hover {
+    padding: 10px 20px;
+    background-color: #779ff5;
+    color: #fff;
+    border:#090909;
+}
+
+/* NOVOS ESTILOS ADICIONADOS (comentados) */
+
+/* Garante que o container2 não ultrapasse a largura */
+.pesquisa-container2 {
+    width: calc(100% - 80px); /* Considera margens de 40px em cada lado */
+    box-sizing: border-box; /* Mantém padding dentro da largura total */
+    overflow: hidden; /* Previne vazamento de conteúdo */
+}
+
+/* Wrapper para organizar os campos em linhas */
+.resultados-wrapper {
+    display: flex;
+    flex-wrap: wrap; /* Permite quebra de linha */
+    gap: 15px; /* Espaço entre elementos */
+    align-items: center;
+}
+
+/* Ajusta os grupos de campo para ocupar espaço igual */
+.pesquisa-container2 .form-pesquisa {
+    flex: 1; /* Ocupa espaço disponível */
+    min-width: 200px; /* Largura mínima antes de quebrar */
+    margin: 0; /* Remove margens inconsistentes */
+}
+
+/* Container para os botões de ação */
+.botoes-acoes {
+    flex: 1 100%; /* Ocupa toda a linha */
+    display: flex;
+    justify-content: flex-end; /* Alinha à direita */
+    gap: 10px; /* Espaço entre botões */
+    margin-top: 10px;
+}
+
+/* Ajusta os botões para tamanho automático */
+.pesquisa-container2 button {
+    width: auto; /* Remove largura fixa */
+    padding: 10px 20px; /* Mantém seu padding original */
+    margin: 0; /* Remove margens laterais */
+}
