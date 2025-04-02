@@ -32,6 +32,7 @@
     padding: 40px 30px;
     border-radius: 10px;
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    
    
     
     
@@ -191,4 +192,10 @@
 .botao-voltar:focus {
     outline: 2px solid #fca00c; /* Seu laranja */
     outline-offset: 2px;
+}
+.resultados-wrapper {
+    display: flex;
+    flex-wrap: wrap; /* Permite quebra de linha */
+    gap: 15px; /* Espaço entre elementos */
+    align-items: center;
 }
