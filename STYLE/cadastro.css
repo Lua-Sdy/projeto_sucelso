@@ -22,15 +22,18 @@
 }
 
 /* Container principal do formulário */
+
 .cadastro-container {
     
+   
     width: 100%;
     max-width: 500px; /* Largura máxima para não ficar muito largo */
     background-color:  rgb(214, 214, 236); /* Cor de fundo do container como no seu estilo */
     padding: 40px 30px;
     border-radius: 10px;
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-    border: 3px solid #1313146b; /* Borda azul com transparência como no seu estilo */
+   
+    
     
     margin: auto;
     box-shadow: 0px 0px 0px rgba(3, 7, 18, 0.35),
