@@ -9,9 +9,7 @@
     <link rel="icon" href="../IMG/Simbolo.png">
     <title>PESQUISAR</title>
 </head>
-
 <body class="organizacao-geral">
-    <!-- CABEÇALHO (mantido igual) -->
     <header id="cabecalho">
         <img src="../IMG/logo_completa.png" alt="logo da empresa">
         <h1>Senai-Sucelso</h1>
@@ -20,7 +18,6 @@
     <main>
         <h3>Bem vindo(a) <span id="nomeUsuario"></span>!</h3>
 
-        <!-- CONTAINER DE PESQUISA (mantido igual) -->
         <div class="pesquisa-container">
             <div class="form-pesquisa">
                 <label for="nomePesquisa">Nome</label>
@@ -29,61 +26,53 @@
             </div>
         </div>
 
-        <!-- CONTAINER DE RESULTADOS (alterações comentadas abaixo) -->
         <div class="pesquisa-container2">
-            <!-- ADICIONADO: div wrapper para agrupar os campos -->
             <div class="resultados-wrapper">
                 <div class="form-pesquisa">
                     <label for="professor">PROFESSOR</label>
                     <input type="text" id="professor" placeholder="NOME">
                 </div>
-
                 <div class="form-pesquisa">
                     <label for="login-docente">LOGIN</label>
                     <input type="text" id="login-docente" placeholder="LOGIN">
-                    
                 </div>
-
                 <div class="form-pesquisa">
                     <label for="email">EMAIL</label>
                     <input type="text" id="email" placeholder="EMAIL">
                 </div>
-
                 <div class="form-pesquisa">
-                    <label for="AREA">DICIPLINA</label>
-                    <input type="text" id="diciplina" placeholder="DICIPLINA">
+                    <label for="diciplina">DISCIPLINA</label>
+                    <input type="text" id="diciplina" placeholder="DISCIPLINA">
                 </div>
-
                 <div class="form-pesquisa">
                     <label for="Telefone">TELEFONE</label>
                     <input type="text" id="Telefone" placeholder="TELEFONE">
                 </div>
-    
-                <!-- ADICIONADO: div para agrupar os botões -->
                 <div class="botoes-acoes">
                     <button>Excluir</button>
                     <button>Editar</button>
                     <button>Salvar</button>
                 </div>
-
-                <!-- Area de pesquisa e edições de horaios -->
-                <div class="pesquisa-container2">
-                    <h4>Horarios</h4>
-
-                    <div from="form-pesquisa">
-                        <label for="turna">Turna</label>
-                        <input type="text" id="turna" placeholder="Entrada">
-                    </div>
-
-                </div>
-
             </div>
 
-            </div>
+            <!-- Tabela de horários dentro da pesquisa-container2 -->
+            <h4>Horários de Aula</h4>
+            <table border="1" id="tabela-horarios">
+                <thead>
+                    <tr>
+                        <th>Dia</th>
+                        <th>Horário</th>
+                        <th>Turma</th>
+                        <th>Sala</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Os dados serão carregados do banco de dados -->
+                </tbody>
+            </table>
         </div>
     </main>
 
-    <!-- RODAPÉ (mantido igual) -->
     <footer id="rodape">
         <div class="links__git">
             <ul>
