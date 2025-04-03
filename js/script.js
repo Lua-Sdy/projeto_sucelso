@@ -1,51 +1,48 @@
-/*botão voltar da pagina de cadastro
-const botaoVoltar = document.querySelector('.botao-voltar');
-botaoVoltar.addEventListener('click', () => {
+// Botão Voltar
+document.querySelector('#botao-voltar')?.addEventListener('click', () => {
     window.location.href = 'principal.html';
 });
-botãa de castros docente da pagina principal
-//const botaoCadastroDocente = document.querySelector('cdtdocente');
-botaoCadastroDocente.addEventListener('click', () => {
-    window.location.href = 'cadastro.html';
-});*/
 
-// Cadastro docentes
-function cadastrarDocentes() {
-    event.preventDefault();
+function cadastrarDocentes(event) {
+
+    event.preventDefault(); // Impede o recarregamento da página
+
     fetch('http://localhost:3000/docentes', {
         method: 'POST',
-        headers: {'Content-Type':'application/json'},
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-            nome_coordenador: usuario.value,
-            telefone_coordenador: telefone.value,
-            celular_coordenador: contato.value,
-            email_docente: email.value,
-            area: area.value
+            nome_docente: document.querySelector('#usuario').value,
+            email_docente: document.querySelector('#email').value,
+            area: document.querySelector('#area').value,
+            telefone_docente: document.querySelector('#telefone').value
         })
-    }).then(resp => resp.json()).then(() => alert('Cliente cadastrado!'));
+    })
+    .then(resp => resp.json())
+    .then(data => {
+        alert('Docente cadastrado com sucesso!');
+        console.log('Resposta do servidor:', data);
+        document.querySelector('#formCadastro').reset();
+    })
+    .catch(err => console.error('Erro no cadastro:', err));
 }
 
-// Cadastro Cordenador
-function cadastrarCordenador() {
-    fetch('http://localhost:3000/cordenador', {
+function cadastrarUsuario() {
+
+    fetch('http://localhost:3000/usuarios', {
         method: 'POST',
-        headers: {'Content-Type':'application/json'},
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-            nome: nome.value,
-            contato: contato.value
+            usuario: document.querySelector('#login_docente').value,
+            senha: document.querySelector('#senha').value,
+            nivel_acesso: "professor",
+            docente_id_fk: document.querySelector('#docente_id')?.value || null,
+            coordenador_id_fk: document.querySelector('#coordenador_id')?.value || null
         })
-    }).then(resp => resp.json()).then(() => alert('Cordenador cadastrado!'));
+    })
+    .then(resp => resp.json())
+    .then(data => {
+        console.log('Resposta do servidor:', data);
+    })
+    .catch(err => console.error('Erro no cadastro:', err));
 }
 
-// Cadastro Turmas
-function cadastrarTurmas() {
-    fetch('http://localhost:3000/turmas', {
-        method: 'POST',
-        headers: {'Content-Type':'application/json'},
-        body: JSON.stringify({
-            nome: nome.value,
-            curso: curso.value,
-            periodo: periodo.value
-        })
-    }).then(resp => resp.json()).then(() => alert('Turmas cadastrado!'));
-}
