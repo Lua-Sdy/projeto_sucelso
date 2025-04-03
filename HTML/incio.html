@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../STYLE/style.css">
+    <link rel="stylesheet" href="../STYLE/painel-lateral.css">
+    <link rel="icon" href="../IMG/Simbolo.png">
+    <title>BASE LIMPA</title>
+    <!-- Adicione o Font Awesome para o ícone de menu -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Estilos temporários para garantir que tudo está carregando */
+        body { font-family: Arial, sans-serif; margin: 0; padding: 0; }
+        #relogio { font-size: 2rem; color: #0066cc; }
+        .side-panel { background: #fff; }
+    </style>
+</head>
+<body class="organizacao-geral">
+    <header id="cabecalho">
+        <div class="menu-container">
+            <button id="menuButton" class="menu-button">
+                <i class="fas fa-bars"></i>
+            </button>
+            <img src="../IMG/logo_completa.png" alt="logo da empresa">
+        </div>
+        <h1>Senai-Sucelso</h1>
+        
+        <!-- Painel Lateral -->
+        <div id="sidePanel" class="side-panel">
+            <button id="closeButton" class="close-button">&times;</button>
+            <ul class="panel-menu">
+                <li><a href="#">Página Inicial</a></li>
+                <li><a href="#">Cadastrar</a></li>
+                <li><a href="#">Consultar</a></li>
+                <li><a href="#">Horarios</a></li>
+                <li><a href="#">Relatorios</a></li>
+                <li><a href="#">Sair</a></li>
+            </ul>
+        </div>
+        <div id="overlay" class="overlay"></div>
+    </header>
+    
+    <main class="pagina-inicial">
+        <!-- Imagem de fundo -->
+        <div class="background-image"></div>
+        
+        <!-- Conteúdo central -->
+        <div class="conteudo-central">
+            <div class="mensagem-boas-vindas">
+                <h3>Bem vindo(a) <span id="nomeUsuario">Usuário</span>!</h3>
+            </div>
+            
+            <div class="relogio-container">
+                <div id="relogio">00:00:00</div>
+            </div>
+        </div>
+    </main>
+
+    <footer id="rodape">
+        <div class="links__git"> 
+            <ul>
+                <li><a href="https://github.com/HelloWorldGuys">Álvaro</a></li>
+                <li><a href="https://github.com/Lua-Sdy">Luã</a></li>
+                <li><a href="link do git ">Maria Clara</a></li>
+                <li><a href="https://github.com/Mario070">Mario</a></li>
+                <li><a href="https://github.com/Bolverk1993">Vítor</a></li>
+            </ul>
+        </div>
+        <p>&copy; 2025</p>
+        <img src="../../IMG/Logo_nome.png" alt="logo simples">
+    </footer>
+    
+    <!-- Script único combinado -->
+    <script>
+    // Espera o DOM estar completamente carregado
+    document.addEventListener('DOMContentLoaded', function() {
+        // ========== CONTROLE DO PAINEL LATERAL ==========
+        const menuButton = document.getElementById('menuButton');
+        const closeButton = document.getElementById('closeButton');
+        const sidePanel = document.getElementById('sidePanel');
+        const overlay = document.getElementById('overlay');
+        
+        if (menuButton && sidePanel && closeButton && overlay) {
+            console.log('Elementos do painel encontrados');
+            
+            menuButton.addEventListener('click', function() {
+                sidePanel.style.left = '0';
+                overlay.style.display = 'block';
+                document.body.style.overflow = 'hidden';
+            });
+            
+            closeButton.addEventListener('click', function() {
+                sidePanel.style.left = '-250px';
+                overlay.style.display = 'none';
+                document.body.style.overflow = '';
+            });
+            
+            overlay.addEventListener('click', function() {
+                sidePanel.style.left = '-250px';
+                overlay.style.display = 'none';
+                document.body.style.overflow = '';
+            });
+        } else {
+            console.error('Erro: Elementos do painel não encontrados');
+        }
+
+        // ========== RELÓGIO EM TEMPO REAL ==========
+        function atualizarRelogio() {
+            const relogioElement = document.getElementById('relogio');
+            if (relogioElement) {
+                const agora = new Date();
+                const horas = agora.getHours().toString().padStart(2, '0');
+                const minutos = agora.getMinutes().toString().padStart(2, '0');
+                const segundos = agora.getSeconds().toString().padStart(2, '0');
+                
+                relogioElement.textContent = `${horas}:${minutos}:${segundos}`;
+                console.log('Relógio atualizado:', relogioElement.textContent);
+            }
+        }
+        
+        // Inicia o relógio
+        if (document.getElementById('relogio')) {
+            setInterval(atualizarRelogio, 1000);
+            atualizarRelogio(); // Chamada inicial
+            console.log('Relógio iniciado');
+        } else {
+            console.error('Erro: Elemento do relógio não encontrado');
+        }
+        
+        // ========== VERIFICAÇÃO DE ELEMENTOS ==========
+        console.log('Verificação completa:');
+        console.log('- Menu Button:', menuButton);
+        console.log('- Side Panel:', sidePanel);
+        console.log('- Relógio:', document.getElementById('relogio'));
+    });
+    </script>
+</body>
+</html>

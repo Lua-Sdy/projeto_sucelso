@@ -39,6 +39,7 @@
     margin-bottom: 5%;
     gap: 15px;
     border-radius: 6px;
+    z-index: 1000;
 }
 
 #cabecalho img {
@@ -58,6 +59,7 @@
 main {
     padding-top: 80px;
     width: 100%;
+    z-index: 1;
 
 }
 
