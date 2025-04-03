@@ -1,18 +1,3 @@
-// JavaScript para controlar o painel lateral
-/*document.getElementById('menuButton').addEventListener('click', function() {
-    document.getElementById('sidePanel').style.left = '0';
-    document.getElementById('overlay').style.display = 'block';
-});
-
-document.getElementById('closeButton').addEventListener('click', function() {
-    document.getElementById('sidePanel').style.left = '-250px';
-    document.getElementById('overlay').style.display = 'none';
-});
-
-document.getElementById('overlay').addEventListener('click', function() {
-    document.getElementById('sidePanel').style.left = '-250px';
-    document.getElementById('overlay').style.display = 'none';
-});*/
 
  // ========== CONTROLE DO PAINEL LATERAL ==========
  const menuButton = document.getElementById('menuButton');
