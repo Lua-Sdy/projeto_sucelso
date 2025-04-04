@@ -28,13 +28,18 @@ db.connect((err) => {
 
 // Inserir Docentes
 app.post('/docentes', (req, res) => {
+    console.log("Dados recebidos no servidor:", req.body);
+
     const docentes = {
-        nome_docente: req.body.usuario,
-        telefone_docente: req.body.telefone,
-        celular_docente: req.body.celular,  
-        email_docente: req.body.email,
+        nome_docente: req.body.nome_docente,
+        telefone_docente: req.body.telefone_docente,
+        email_docente: req.body.email_docente,
         area: req.body.area
     };
+
+    if (!docentes.nome_docente || !docentes.telefone_docente || !docentes.email_docente || !docentes.area) {
+        return res.status(400).json({ error: "Todos os campos são obrigatórios!" });
+    }
 
     db.query('INSERT INTO docentes SET ?', docentes, (err, results) => {
         if (err) {
@@ -45,24 +50,6 @@ app.post('/docentes', (req, res) => {
     });
 });
 
-app.post('/usuarios', (req, res) => {
-    const usuario = {
-        usuario: req.body.usuario,
-        senha: req.body.senha,
-        nivel_acesso: req.body.nivel_acesso,
-        docente_id_fk: req.body.docente_id_fk || null,
-        coordenador_id_fk: req.body.coordenador_id_fk || null
-    };
-
-    db.query('INSERT INTO usuarios SET ?', usuario, (err, results) => {
-        if (err) {
-            console.error('Erro ao inserir usuário:', err);
-            return res.status(500).json({ error: 'Erro ao inserir usuário' });
-        }
-        res.json({ id: results.insertId, ...usuario });
-    });
-});
-
 // Servindo arquivos estáticos
 app.use(express.static(path.join(__dirname, '../html')));
 
@@ -70,3 +57,4 @@ app.use(express.static(path.join(__dirname, '../html')));
 app.listen(PORT, () => {
     console.log(`Servidor rodando em: http://localhost:${PORT}`);
 });
+

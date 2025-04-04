@@ -7,15 +7,22 @@
     <link rel="stylesheet" href="../STYLE/style.css">
     <link rel="stylesheet" href="../STYLE/registros.css">
     <link rel="stylesheet" href="../STYLE/cadastro.css">
+    <link rel="stylesheet" href="../STYLE/painel-lateral.css">
     <link rel="icon" href="../IMG/Simbolo.png">
     <title>CADASTRO DOCENTE</title>
+<!-- Adicione o Font Awesome para o ícone de menu -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
-
 <body class="organizacao-geral">
-    <header id="cabecalho">
-        <img src="../IMG/logo_completa.png" alt="logo da empresa">
-        <h1>Senai-Sucelso</h1>
-    </header>
+
+
+    <body class="bodycadastro">
+        <header id="cabecalho">
+            <img src="../IMG/logo_completa.png" alt="logo da empresa">
+            <h1>
+                Senai-Sucelso
+            </h1>
+        </header>
 
     <main>
         <div class="cadastro-container">
@@ -57,26 +64,32 @@
                     <input type="tel" id="telefone">
                 </div>
 
-                <button type="submit" class="botao-cadastro" onclick="cadastrarDocentes(event); cadastrarUsuario();">CADASTRAR</button>
-                <button class="botao-voltar" id="botao-voltar">VOLTAR</button>
-            </form>
-        </div>
-    </main>
+                    <button type="submit" class="botao-cadastro" >CADASTRAR</button>
 
-    <footer id="rodape">
-        <div class="links__git">
-            <ul>
-                <li><a href="https://github.com/HelloWorldGuys">Álvaro</a></li>
-                <li><a href="https://github.com/Lua-Sdy">Luã</a></li>
-                <li><a href="#">Maria Clara</a></li>
-                <li><a href="https://github.com/Mario070">Mario</a></li>
-                <li><a href="https://github.com/Bolverk1993">Vítor</a></li>
-            </ul>
-        </div>
-        <p>&copy; 2025</p>
-        <img src="../IMG/Logo_nome.png" alt="logo simples">
-    </footer>
+                    <button class="botao-voltar" id="botao-voltar">VOLTAR</button>
 
-    <script src="../js/script.js"></script>
+
+                </form>
+
+
+
+        </main>
+
+        <footer id="rodape">
+            <div class="links__git">
+                <ul>
+                    <li><a href="https://github.com/HelloWorldGuys">Álvaro</a></li>
+                    <li><a href="https://github.com/Lua-Sdy">Luã</a></li>
+                    <li><a href="link do git ">Maria Clara</a></li>
+                    <li><a href="https://github.com/Mario070">Mario</a></li>
+                    <li><a href="https://github.com/Bolverk1993">Vítor</a></li>
+                </ul>
+            </div>
+            <p>&copy; 2025</p>
+            <img src="../IMG/Logo_nome.png" alt="logo simples">
+        </footer>
+    </body>
+    <script src="../JS/script.js"></script>
+    
 </body>
 </html>
