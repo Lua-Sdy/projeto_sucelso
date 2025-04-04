@@ -1,82 +1,110 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+
 <body>
+
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
         <link rel="stylesheet" href="../STYLE/style.css">
         <link rel="stylesheet" href="../STYLE/registros.css">
         <link rel="stylesheet" href="../STYLE/cadastro.css">
-        <link rel="icon" href="../IMG/Simbolo.png">
+        <link rel="stylesheet" href="../IMG/Simbolo.png">
+        <link rel="stylesheet" href="../STYLE/painel-lateral.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+
         <title>CADASTRO DOCENTE</title>
     </head>
-    
+
     <body class="organizacao-geral">
-    
-    
-        <body class="bodycadastro">
-            <header id="cabecalho">
+
+
+        <header id="cabecalho">
+            <div class="menu-container">
+                <button id="menuButton" class="menu-button">
+                    <i class="fas fa-bars"></i> <!-- Ícone de menu hambúrguer -->
+                </button>
                 <img src="../IMG/logo_completa.png" alt="logo da empresa">
-                <h1>
-                    Senai-Sucelso
-                </h1>
-            </header>
-    
-            <main>
-                
-                <div class="cadastro-container">
-                    <h1 class="cadastro-titulo">CADRASTRO TURMA</h1>
-    
-                    <form id="formCadastroTurma">
-                        <div class="form-grupo">
-                            <label for="nome_turma">NOME TURMA</label>
-                            <input type="text" id="nome_turma" required>
-                        </div>
-    
-                        <div class="form-grupo">
-                            <label for="curso">CURSO</label>
-                            <input type="text" id="curso" required>
-                        </div>
-    
-                        <div class="form-grupo">
-                            <label for="periodo">PERIODO</label>
-                            <input type="text" id="periodo" required>
-                        </div>
-    
-                        <button type="submit" class="botao-cadastro">CADASTRAR</button>
-    
-                        <button class="botao-voltar" id="botao-voltar">VOLTAR</button>
-    
-    
-                    </form>
-    
-    
-    
-            </main>
-    
-            <footer id="rodape">
-                <div class="links__git">
-                    <ul>
-                        <li><a href="https://github.com/HelloWorldGuys">Álvaro</a></li>
-                        <li><a href="https://github.com/Lua-Sdy">Luã</a></li>
-                        <li><a href="link do git ">Maria Clara</a></li>
-                        <li><a href="https://github.com/Mario070">Mario</a></li>
-                        <li><a href="https://github.com/Bolverk1993">Vítor</a></li>
-                    </ul>
-                </div>
-                <p>&copy; 2025</p>
-                <img src="../IMG/Logo_nome.png" alt="logo simples">
-            </footer>
-        </body>
-        <script src="../JS/script.js"></script>
-        
+            </div>
+            <h1>Senai-Sucelso</h1>
+
+            <!-- Painel Lateral -->
+            <div id="sidePanel" class="side-panel">
+                <button id="closeButton" class="close-button">&times;</button>
+                <ul class="panel-menu">
+                    <li><a href="incio.html">Página Inicial</a></li>
+                    <li><a href="cadastro-docente.html">Cadastrar Docente</a></li>
+                    <li><a href="codernador-cadastro.html">Cadastrar Coordernador</a></li>
+                    <li><a href="cadastro-turma.html">Turma</a></li>
+                    <li><a href="cadastro-horarios.html">Horarios</a></li>
+                    <li><a href="consultar-docente.html">Consultar Docente</a></li>
+                    <li><a href="consultar-codernador.html">Consultar Coordernador</a></li>
+                    <li><a href="#">Relatorios</a></li>
+                    <li><a href="#">Sair</a></li>
+                </ul>
+            </div>
+            <div id="overlay" class="overlay"></div>
+        </header>
+
+        <main>
+
+            <div class="cadastro-container">
+                <h1 class="cadastro-titulo">CADRASTRO TURMA</h1>
+
+                <form id="formCadastroTurma">
+                    <div class="form-grupo">
+                        <label for="nome_turma">NOME TURMA</label>
+                        <input type="text" id="nome_turma" required>
+                    </div>
+
+                    <div class="form-grupo">
+                        <label for="curso">CURSO</label>
+                        <input type="text" id="curso" required>
+                    </div>
+
+                    <div class="form-grupo">
+                        <label for="periodo">PERIODO</label>
+                        <input type="text" id="periodo" required>
+                    </div>
+
+                    <button type="submit" class="botao-cadastro">CADASTRAR</button>
+
+                    <button class="botao-voltar" id="botao-voltar">VOLTAR</button>
+
+
+                </form>
+
+
+
+        </main>
+
+        <footer id="rodape">
+            <div class="links__git">
+                <ul>
+                    <li><a href="https://github.com/HelloWorldGuys">Álvaro</a></li>
+                    <li><a href="https://github.com/Lua-Sdy">Luã</a></li>
+                    <li><a href="link do git ">Maria Clara</a></li>
+                    <li><a href="https://github.com/Mario070">Mario</a></li>
+                    <li><a href="https://github.com/Bolverk1993">Vítor</a></li>
+                </ul>
+            </div>
+            <p>&copy; 2025</p>
+            <img src="../IMG/Logo_nome.png" alt="logo simples">
+        </footer>
     </body>
-    </html> 
+    <script src="../JS/script.js"></script>
+    <script src="../JS/painel.js"></script>
+
 </body>
+
+</html>
+</body>
+
 </html>
