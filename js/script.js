@@ -65,3 +65,66 @@ function cadastrarHorario(event) {
     })
     .catch(err => console.error('Erro no cadastro:', err));
 }
+
+// Captura do formulário para evitar recarregamento da página
+document.querySelector('#formCadastroCoordenador')?.addEventListener('submit', cadastrarCoordenador);
+
+function cadastrarCoordenador(event) {
+    event.preventDefault();
+
+    const nome = document.querySelector('#nome_coordenador').value.trim();
+    const email = document.querySelector('#email_coordenador').value.trim();
+    const telefone = document.querySelector('#telefone_coordenador').value.trim();
+    const codigo = document.querySelector('#codigo').value.trim(); // Código presente na tabela
+
+    fetch('http://localhost:3000/coordenadores', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+            nome_coordenador: nome,
+            email_coordenador: email,
+            telefone_coordenador: telefone,
+            codigo: codigo
+        })
+    })
+    .then(resp => resp.json())
+    .then(data => {
+        alert('Coordenador cadastrado com sucesso!');
+        console.log('Resposta do servidor:', data);
+        document.querySelector('#formCadastroCoordenador').reset();
+    })
+    .catch(err => console.error('Erro no cadastro:', err));
+}
+
+// Captura do formulário de turma
+document.querySelector('#formCadastroTurma')?.addEventListener('submit', cadastrarTurma);
+
+function cadastrarTurma(event) {
+    event.preventDefault();
+
+    const nome_turma = document.querySelector('#nome_turma').value.trim();
+    const curso = document.querySelector('#curso').value.trim();
+    const periodo = document.querySelector('#periodo').value.trim();
+
+    fetch('http://localhost:3000/turmas', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+            nome_turma: nome_turma,
+            curso: curso,
+            periodo: periodo
+        })
+    })
+    .then(resp => resp.json())
+    .then(data => {
+        alert('Turma cadastrada com sucesso!');
+        console.log('Resposta do servidor (turma):', data);
+        document.querySelector('#formCadastroTurma').reset();
+    })
+    .catch(err => {
+        console.error('Erro no cadastro da turma:', err);
+        alert('Erro ao cadastrar a turma. Verifique o console.');
+    });
+}
+
+

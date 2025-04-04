@@ -32,7 +32,7 @@ app.post('/docentes', (req, res) => {
 
     const docentes = {
         nome_docente: req.body.nome_docente,
-        telefone_docente: req.body.telefone_docente,
+        telefone_docente: req.body.telefone_docente, 
         email_docente: req.body.email_docente,
         area: req.body.area
     };
@@ -64,6 +64,47 @@ app.post('/horarios_docentes', (req, res) => {
             return res.status(500).json({ error: 'Erro ao inserir horario' });
         }
         res.json({ id: results.insertId, ...horario });
+    });
+});
+
+app.post('/coordenadores', (req, res) => {
+    console.log("Dados recebidos no servidor (coordenador):", req.body);
+
+    const coordenador = {
+        nome_coordenador: req.body.nome_coordenador,
+        telefone_coordenador: req.body.telefone_coordenador, 
+        email_coordenador: req.body.email_coordenador,
+        codigo: req.body.codigo // Campo presente na tabela
+    };
+
+    // Inserção no banco de dados
+    db.query('INSERT INTO coordenadores SET ?', coordenador, (err, results) => {
+        if (err) {
+            console.error('Erro ao inserir coordenador:', err); // 🔍 Vai mostrar o erro exato do banco
+            return res.status(500).json({ error: 'Erro ao inserir coordenador' });
+        }
+        res.json({ id: results.insertId, ...coordenador });
+    });
+} );
+
+// Inserir Turmas
+app.post('/turmas', (req, res) => {
+    console.log("Dados recebidos no servidor (turma):", req.body);
+
+    const turma = {
+        nome_turma: req.body.nome_turma,
+        curso: req.body.curso,
+        periodo: req.body.periodo
+    };
+
+    
+    // Inserção no banco de dados
+    db.query('INSERT INTO turmas SET ?', turma, (err, results) => {
+        if (err) {
+            console.error('Erro ao inserir turma:', err);
+            return res.status(500).json({ error: 'Erro ao inserir turma' });
+        }
+        res.json({ id: results.insertId, ...turma });
     });
 });
 
