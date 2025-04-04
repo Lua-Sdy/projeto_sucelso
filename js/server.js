@@ -37,16 +37,33 @@ app.post('/docentes', (req, res) => {
         area: req.body.area
     };
 
-    if (!docentes.nome_docente || !docentes.telefone_docente || !docentes.email_docente || !docentes.area) {
-        return res.status(400).json({ error: "Todos os campos são obrigatórios!" });
-    }
-
     db.query('INSERT INTO docentes SET ?', docentes, (err, results) => {
         if (err) {
             console.error('Erro ao inserir docente:', err);
             return res.status(500).json({ error: 'Erro ao inserir docente' });
         }
         res.json({ id: results.insertId, ...docentes });
+    });
+});
+
+
+app.post('/horarios_docentes', (req, res) => {
+    console.log("Dados recebidos no servidor:", req.body);
+
+    const horario = {
+        dia_semana: req.body.dia_semana,
+        hora_inicio: req.body.hora_inicio,
+        hora_fim: req.body.hora_fim,
+        docente_id_fk: req.body.docente_id_fk,
+        turma_id_fk: req.body.turma_id_fk
+    };
+
+    db.query('INSERT INTO horarios_docentes SET ?', horario, (err, results) => {
+        if (err) {
+            console.error('Erro ao inserir horario:', err);
+            return res.status(500).json({ error: 'Erro ao inserir horario' });
+        }
+        res.json({ id: results.insertId, ...horario });
     });
 });
 
