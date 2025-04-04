@@ -1,40 +1,35 @@
+// Botão Voltar
+document.querySelector('#botao-voltar')?.addEventListener('click', () => {
+    window.location.href = 'principal.html';
+});
 
-function cadastrarDocentes() {
+// Captura do formulário para evitar recarregamento da página
+document.querySelector('#formCadastro')?.addEventListener('submit', cadastrarDocentes);
+
+function cadastrarDocentes(event) {
     event.preventDefault();
+
+    const nome = document.querySelector('#usuario').value.trim();
+    const email = document.querySelector('#email').value.trim();
+    const area = document.querySelector('#area').value.trim();
+    const telefone = document.querySelector('#telefone').value.trim();
+
+
     fetch('http://localhost:3000/docentes', {
         method: 'POST',
-        headers: {'Content-Type':'application/json'},
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-            nome_coordenador: usuario.value,
-            telefone_coordenador: telefone.value,
-            celular_coordenador: contato.value,
-            email_docente: email.value,
-            area: area.value
+            nome_docente: nome,
+            email_docente: email,
+            area: area,
+            telefone_docente: telefone
         })
-    }).then(resp => resp.json()).then(() => alert('Cliente cadastrado!'));
-}
-
-// Cadastro Cordenador
-function cadastrarCordenador() {
-    fetch('http://localhost:3000/cordenador', {
-        method: 'POST',
-        headers: {'Content-Type':'application/json'},
-        body: JSON.stringify({
-            nome: nome.value,
-            contato: contato.value
-        })
-    }).then(resp => resp.json()).then(() => alert('Cordenador cadastrado!'));
-}
-
-// Cadastro Turmas
-function cadastrarTurmas() {
-    fetch('http://localhost:3000/turmas', {
-        method: 'POST',
-        headers: {'Content-Type':'application/json'},
-        body: JSON.stringify({
-            nome: nome.value,
-            curso: curso.value,
-            periodo: periodo.value
-        })
-    }).then(resp => resp.json()).then(() => alert('Turmas cadastrado!'));
+    })
+    .then(resp => resp.json())
+    .then(data => {
+        alert('Docente cadastrado com sucesso!');
+        console.log('Resposta do servidor:', data);
+        document.querySelector('#formCadastro').reset();
+    })
+    .catch(err => console.error('Erro no cadastro:', err));
 }
