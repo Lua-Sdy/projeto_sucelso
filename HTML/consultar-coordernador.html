@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../STYLE/style.css">
+    <link rel="stylesheet" href="../STYLE/registros.css">
+    <link rel="stylesheet" href="../STYLE/consulta.css">
+    <link rel="stylesheet" href="../STYLE/painel-lateral.css">
+    <link rel="icon" href="../IMG/Simbolo.png">
+    <title>Consultar Coordenador</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+</head>
+
+<body class="organizacao-geral">
+    <header id="cabecalho">
+        <div class="menu-container">
+            <button id="menuButton" class="menu-button">
+                <i class="fas fa-bars"></i>
+            </button>
+            <img src="../IMG/logo_completa.png" alt="logo da empresa">
+        </div>
+        <h1>Senai-Sucelso</h1>
+
+        <div id="sidePanel" class="side-panel">
+            <button id="closeButton" class="close-button">&times;</button>
+            <ul class="panel-menu">
+                <li><a href="incio.html">Página Inicial</a></li>
+                <li><a href="cadastro-docente.html">Cadastrar Docente</a></li>
+                <li><a href="codernador-cadastro.html">Cadastrar Coordenador</a></li>
+                <li><a href="connsulta-docente.html">Consultar Docente</a></li>
+                <li><a href="consultar-coordernador.html">Consultar Coordenador</a></li>
+                <li><a href="#">Horarios</a></li>
+                <li><a href="#">Relatorios</a></li>
+                <li><a href="#">Sair</a></li>
+            </ul>
+        </div>
+        <div id="overlay" class="overlay"></div>
+    </header>
+    
+    <main>
+        <br><br>
+        <h3>Consultar Coordenador</h3>
+
+        <!-- Barra de pesquisa melhorada -->
+        <div class="pesquisa-container">
+
+            <div class="form-pesquisa">
+                
+                <input type="text" id="nomePesquisa" placeholder="Digite o nome">
+                <button id="pesquisar"><i class="fas fa-search"></i> Pesquisar</button>
+
+            </div>
+        </div>
+
+        <!-- Área de resultados organizada -->
+        <div class="pesquisa-container2">
+            <div class="resultados-wrapper">
+                <div class="form-pesquisa">
+                    <!--Nome coordernador-->
+                    <input type="text" id="coordernador-nome" placeholder="NOME" readonly>
+                </div>
+                <div class="form-pesquisa">
+                    <!--codigo coordernador-->
+                    <input type="number" id="codigo-coordenador" placeholder="CÓDIGO" readonly>
+                </div>
+                <div class="form-pesquisa">
+                    <!--login coordernador-->
+                    <input type="text" id="login-coordenador" placeholder="LOGIN" readonly>
+                </div>
+                <div class="form-pesquisa">
+                    <!--email coordernador-->
+
+                    <input type="email" id="email-coordernador" placeholder="EMAIL" readonly>
+                </div>
+                <div class="form-pesquisa">
+                    <!--Telefone coordernador-->
+                    <input type="tel" id="Telefone-coordernador" placeholder="TELEFONE" readonly>
+                </div>
+                
+                <div class="botoes-acoes">
+                    <button id="excluir"><i class="fas fa-trash-alt"></i> Excluir</button>
+                    <button id="editar"><i class="fas fa-edit"></i> Editar</button>
+                    <button id="salvar"><i class="fas fa-save"></i> Salvar</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer id="rodape">
+        <div class="links__git">
+            <ul>
+                <li><a href="https://github.com/HelloWorldGuys">Álvaro</a></li>
+                <li><a href="https://github.com/Lua-Sdy">Luã</a></li>
+                <li><a href="link do git ">Maria Clara</a></li>
+                <li><a href="https://github.com/Mario070">Mario</a></li>
+                <li><a href="https://github.com/Bolverk1993">Vítor</a></li>
+            </ul>
+        </div>
+        <p>&copy; 2025</p>
+        <img src="../IMG/Logo_nome.png" alt="logo simples">
+    </footer>
+
+    <script src="../JS/script.js"></script>
+    <script src="../JS/painel.js"></script>
+   
+</body>
+</html>
