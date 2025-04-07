@@ -10,63 +10,84 @@
     <link rel="stylesheet" href="../STYLE/painel-lateral.css">
     <link rel="icon" href="../IMG/Simbolo.png">
     <title>CADASTRO USUARIOS</title>
-<!-- Adicione o Font Awesome para o ícone de menu -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Adicione o Font Awesome para o ícone de menu -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
+
 <body class="organizacao-geral">
 
 
     <body class="bodycadastro">
         <header id="cabecalho">
-            <img src="../IMG/logo_completa.png" alt="logo da empresa">
-            <h1>
-                Senai-Sucelso
-            </h1>
+            <div class="menu-container">
+                <button id="menuButton" class="menu-button">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <img src="../IMG/logo_completa.png" alt="logo da empresa">
+            </div>
+            <h1>Senai-Sucelso</h1>
+
+            <div id="sidePanel" class="side-panel">
+                <button id="closeButton" class="close-button">&times;</button>
+                <ul class="panel-menu">
+                    <li><a href="incio.html">Página Inicial</a></li>
+                <li><a href="cadastro-docente.html">Cadastrar Docente</a></li>
+                <li><a href="codernador-cadastro.html">Cadastrar Coordernador</a></li>
+                <li><a href="cadastro-usuario.html">Cadastrar Usuario</a></li>
+                <li><a href="cadastro-turma.html">Turma</a></li>
+                <li><a href="cadastro-horarios.html">Horarios</a></li>
+                <li><a href="consulta-docente.html">Consultar Docente</a></li>
+                <li><a href="consultar-coordernador.html">Consultar Coordernador</a></li>
+                <li><a href="#">Relatorios</a></li>
+                <li><a href="#">Sair</a></li>
+                </ul>
+            </div>
+            <div id="overlay" class="overlay"></div>
         </header>
 
-    <main>
-        <div class="cadastro-container">
-            <h1 class="cadastro-titulo">CADASTRO USUARIOS</h1>
+        <main>
+            <div class="cadastro-container">
+                <h1 class="cadastro-titulo">CADASTRO USUARIOS</h1>
 
-            <form id="formCadastroUsuario">
-             
-                <div class="form-grupo">
-                    <label for="usuario">NOME USUARIO</label>
-                    <input type="text" id="usuario" required>
-                </div>
+                <form id="formCadastroUsuario">
 
-                <div class="form-grupo">
-                    <label for="senha">SENHA</label>
-                    <input type="text" id="senha" required>
-                </div>
+                    <div class="form-grupo">
+                        
+                        <select id="nivel_acesso" onchange="mostrarCampos()" required>
+                            <option value="">Selecione</option>
+                            <option value="coordenador">Coordenador</option>
+                            <option value="docente">Docente</option> <!-- Alterado de "professor" para "docente" -->
+                        </select>
+                    </div>
+                    
+                    <div id="campo-docente" style="display: none;" class="form-grupo">
+                        <label for="docente_id">DOCENTE ID</label>
+                        <input type="number" id="docente_id" required>
+                    </div>
+                    
+                    <div id="campo-coordenador" style="display: none;" class="form-grupo">
+                        <label for="coordenador_id">COORDENADOR ID</label>
+                        <input type="number" id="coordenador_id" required>
+                    </div>
 
-                <div class="form-grupo">
-                    <label for="confirmar_senha">COMFIRMAR SENHA </label>
-                    <input type="text" id="confirmar_senha" required>
-                </div>
+                    <div class="form-grupo">
+                        <label for="usuario">NOME USUARIO</label>
+                        <input type="text" id="usuario" required>
+                    </div>
 
-                <div class="form-grupo">
-                    <label for="nivel_acesso">FUNÇÃO</label>
-                  <SELect id="nivel_acesso"><option value="">-------</option>
-                <option value="coordenador">Coordenador</option>
-                <option value="professor">Professor</option>
-            </SELect>
-                </div>
+                    <div class="form-grupo">
+                        <label for="senha">SENHA</label>
+                        <input type="text" id="senha" required>
+                    </div>
 
-                <div class="form-grupo">
-                    <label for="docente_id">DOSCENTE ID</label>
-                    <input type="number" id="docente_id" required>
-                </div>
+                    <div class="form-grupo">
+                        <label for="confirmar_senha">COMFIRMAR SENHA </label>
+                        <input type="text" id="confirmar_senha" required>
+                    </div>
 
-                <div class="form-grupo">
-                    <label for="coordenador_id">COORDENADOR ID</label>
-                    <input type="number" id="coordenador_id" required>
-                </div>
-
-                    <button type="submit" class="botao-cadastro" >SALVAR</button>
+                    <button type="submit" class="botao-cadastro">SALVAR</button>
 
                     <button class="botao-voltar" id="botao-voltar">VOLTAR</button>
-
 
                 </form>
 
@@ -89,6 +110,8 @@
         </footer>
     </body>
     <script src="../JS/script.js"></script>
-    
+    <script src="../JS/painel.js"></script>
+
 </body>
+
 </html>
