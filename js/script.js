@@ -105,7 +105,7 @@ function cadastrarTurma(event) {
     const nome_turma = document.querySelector('#nome_turma').value.trim();
     const curso = document.querySelector('#curso').value.trim();
     const periodo = document.querySelector('#periodo').value.trim();
-
+ 
     fetch('http://localhost:3000/turmas', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -127,4 +127,73 @@ function cadastrarTurma(event) {
     });
 }
 
+document.querySelector('#formCadastroUsuario')?.addEventListener('submit', cadastrarUsuario);
 
+function cadastrarUsuario(event) {
+    event.preventDefault();
+
+    const nomeUsuario = document.querySelector('#usuario').value.trim();
+    const senha = document.querySelector('#senha').value.trim();
+    const comfirmarSenha = document.querySelector('#confirmar_senha').value.trim();
+    const nivelAcesso = document.querySelector('#nivel_acesso').value.trim();
+    const doscenteId = document.querySelector('#docente_id').value.trim();
+    const cordenadorId = document.querySelector('#coordenador_id').value.trim();
+
+    if(senha === comfirmarSenha){
+        fetch('http://localhost:3000/usuarios', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                usuario: nomeUsuario,
+                senha: senha,
+                nivel_acesso: nivelAcesso,
+                docente_id_fk: doscenteId,
+                coordenador_id_fk: cordenadorId
+    
+            })
+        })
+        .then(resp => resp.json())
+        .then(data => {
+            alert('usuarios cadastrado com sucesso!');
+            console.log('Resposta do servidor:', data);
+            document.querySelector('#formCadastroUsuario').reset();
+        })
+        .catch(err => console.error('Erro no cadastro:', err));
+    }else{
+        alert('SSENHAS DIFERENTES!!');
+    }
+    }
+    
+    document.getElementById('botao-login').addEventListener('click', loginUsuario);
+
+    async function loginUsuario(event) {
+        event.preventDefault();
+    
+        const usuario = document.getElementById('login-user').value.trim();
+        const senha = document.getElementById('password-user').value.trim();
+    
+        if (!usuario || !senha) {
+            return alert('Preencha todos os campos!');
+        }
+    
+        try {
+            const resposta = await fetch(`http://localhost:3000/login?usuario=${usuario}&senha=${senha}`);
+    
+            if (!resposta.ok) {
+                throw new Error('Erro na requisição');
+            }
+    
+            const { status } = await resposta.json();
+    
+            if (status === 'ok') {
+                window.location.href = "./incio.html";
+            } else {
+                alert('Usuário ou senha incorretos!');
+            }
+    
+        } catch (error) {
+            console.error('Erro:', error);
+            alert('Erro ao fazer login');
+        }
+    }
+    

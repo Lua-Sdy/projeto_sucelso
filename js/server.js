@@ -108,6 +108,45 @@ app.post('/turmas', (req, res) => {
     });
 });
 
+app.post('/usuarios', (req, res) => {
+    console.log("Dados recebidos no servidor:", req.body);
+
+    const usuarios = {
+        usuario: req.body.usuario,
+        senha: req.body.senha,
+        nivel_acesso: req.body.nivel_acesso,
+        docente_id_fk: req.body.docente_id_fk,
+        coordenador_id_fk: req.body.coordenador_id_fk
+    };
+
+    db.query('INSERT INTO usuarios SET ?', usuarios, (err, results) => {
+        if (err) {
+            console.error('Erro ao inserir usuarios:', err);
+            return res.status(500).json({ error: 'Erro ao inserir usuarios' });
+        }
+        res.json({ id: results.insertId, ...usuarios });
+    });
+});
+
+app.get('/login', (req, res) => {
+    const { usuario, senha } = req.query;
+
+    const sql = 'SELECT * FROM usuarios WHERE usuario = ? AND senha = ?';
+    db.query(sql, [usuario, senha], (erro, resultados) => {
+        if (erro) {
+            console.log(erro);
+            return res.status(500).json({ status: 'erro' });
+        }
+
+        if (resultados.length > 0) {
+            res.json({ status: 'ok' });
+        } else {
+            res.json({ status: 'erro' });
+        }
+    });
+});
+
+
 // Servindo arquivos estáticos
 app.use(express.static(path.join(__dirname, '../html')));
 
