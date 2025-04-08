@@ -2,7 +2,7 @@ const express = require('express');
 const mysql = require('mysql2');
 const cors = require('cors');
 const bodyParser = require('body-parser');
-const path = require('path'); // Importando path
+const path = require('path');
 
 const app = express();
 app.use(cors());
@@ -161,6 +161,100 @@ app.get('/coordenadores/:coordenador_id', (req, res) => {
     });
 });
 
+app.get('/docentes/:docente_id', (req, res) => {
+    const docente_id = req.params.docente_id;
+    console.log("Procurando docente com id:", docente_id);
+    console.log(docente_id)
+    db.query('SELECT * FROM docentes WHERE docente_id = ?', [docente_id], (err, results) => {
+        if (err) throw err;
+        
+        if (results.length === 0) {
+            return res.status(404).json({ mensagem: "Docente não encontrado" });
+        }
+
+        res.json(results[0]);
+    });
+});
+
+app.delete('/coordenadores/:coordenador_id', (req, res) => {
+    const coordenador_id = req.params.coordenador_id;
+    db.query('DELETE FROM coordenadores WHERE coordenador_id = ?', coordenador_id, (err) => {
+        if (err) throw err;
+        res.json({ mensagem: 'coordenador excluído com sucelso!' });
+    });
+});
+
+app.delete('/docentes/:docente_id', (req, res) => {
+    const docente_id = req.params.docente_id;
+    db.query('DELETE FROM docentes WHERE docente_id = ?', docente_id, (err) => {
+        if (err) throw err;
+        res.json({ mensagem: 'docente excluído com sucelso!' });
+    });
+});
+
+app.put('/update-coordenadores', (req, res) => {
+    console.log(" Dados recebidos:", req.body);
+
+    const { coordenador_id, nome_coordenador, codigo, email_coordenador, telefone_coordenador } = req.body;
+
+    if (!coordenador_id) {
+        console.error(" ID do coordenador não fornecido.");
+        return res.status(400).json({ status: 400, message: 'ID do coordenador é necessário' });
+    }
+
+    const query = `
+        UPDATE coordenadores 
+        SET nome_coordenador = ?, telefone_coordenador = ?, email_coordenador = ?, codigo = ?
+        WHERE coordenador_id = ?
+    `;
+
+    db.query(query, [nome_coordenador, telefone_coordenador, email_coordenador, codigo, coordenador_id], (err, result) => {
+        if (err) {
+            console.error(" Erro ao atualizar coordenador:", err);
+            return res.status(500).json({ status: 500, message: 'Erro ao atualizar coordenador' });
+        }
+
+        if (result.affectedRows > 0) {
+            console.log(" Coordenador atualizado com sucesso.");
+            return res.status(200).json({ status: 200, message: 'Coordenador atualizado com sucesso' });
+        } else {
+            console.warn(" Coordenador não encontrado.");
+            return res.status(404).json({ status: 404, message: 'Coordenador não encontrado' });
+        }
+    });
+});
+
+app.put("/update-docentes", (req, res) => {
+    console.log(" Dados recebidos para atualização de docente:", req.body);
+
+    const { docente_id, nome_docente, telefone_docente, email_docente, area_docente } = req.body;
+
+    if (!docente_id) {
+        console.error(" ID do docente não fornecido.");
+        return res.status(400).json({ status: 400, message: 'ID do docente é necessário' });
+    }
+
+    const query = `
+        UPDATE docentes 
+        SET nome_docente = ?, telefone_docente = ?, email_docente = ?, area = ?
+        WHERE docente_id = ?
+    `;
+
+    db.query(query, [nome_docente, telefone_docente, email_docente, area_docente, docente_id], (err, result) => {
+        if (err) {
+            console.error(" Erro ao atualizar docente:", err);
+            return res.status(500).json({ status: 500, message: 'Erro ao atualizar docente' });
+        }
+
+        if (result.affectedRows > 0) {
+            console.log(" Docente atualizado com sucesso.");
+            return res.status(200).json({ status: 200, message: 'Docente atualizado com sucesso' });
+        } else {
+            console.warn(" Docente não encontrado.");
+            return res.status(404).json({ status: 404, message: 'Docente não encontrado' });
+        }
+    });
+});
 
 // Servindo arquivos estáticos
 app.use(express.static(path.join(__dirname, '../html')));

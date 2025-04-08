@@ -201,28 +201,247 @@ async function loginUsuario(event) {
     }
 }
 
-document.getElementById("pesquisar").addEventListener("click", () => {
-    const id = document.getElementById("nomePesquisa").value;
+const btnPesquisar = document.getElementById("pesquisar");
+
+if (btnPesquisar) {
+    btnPesquisar.addEventListener("click", () => {
+        const id = document.getElementById("nomePesquisa").value;
+
+        if (!id) {
+            return alert('Preencha id!');
+        }
+
+        fetch(`http://localhost:3000/coordenadores/${id}`)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error("Coordenador não encontrado");
+                }
+                return response.json();
+            })
+            .then(data => {
+                document.getElementById("coordernador-nome").value = data.nome_coordenador;
+                document.getElementById("codigo-coordenador").value = data.codigo;
+                document.getElementById("inputId").value = data.coordenador_id;
+                document.getElementById("email-coordernador").value = data.email_coordenador;
+                document.getElementById("Telefone-coordernador").value = data.telefone_coordenador;
+            })
+    });
+}
+
+
+const btnPesquisarDocente = document.getElementById("pesquisarDocente");
+
+if (btnPesquisarDocente) {
+    btnPesquisarDocente.addEventListener("click", () => {
+    const id = document.getElementById("nomePesquisaDocente").value;
 
     if (!id) {
         return alert('Preencha id!');
     }
 
-    fetch(`http://localhost:3000/coordenadores/${id}`)
+    fetch(`http://localhost:3000/docentes/${id}`)
         .then(response => {
             if (!response.ok) {
-                throw new Error("Coordenador não encontrado");
+                throw new Error("Docente não encontrado");
             }
             return response.json();
         })
         .then(data => {
-            document.getElementById("coordernador-nome").value = data.nome_coordenador;
-            document.getElementById("codigo-coordenador").value = data.codigo;
-            document.getElementById("inputId").value = data.coordenador_id;
-            document.getElementById("email-coordernador").value = data.email_coordenador;
-            document.getElementById("Telefone-coordernador").value = data.telefone_coordenador;
+            document.getElementById("docente-nome").value = data.nome_docente;
+            document.getElementById("area-docente").value = data.area;
+            document.getElementById("id-docente").value = data.docente_id;
+            document.getElementById("email-docente").value = data.email_docente;
+            document.getElementById("Telefone-docente").value = data.telefone_docente;
         })
-});
+})};
+
+const bntExcluirCoordenador = document.getElementById("excluirCoordenador");
+
+if (bntExcluirCoordenador) {
+    bntExcluirCoordenador.addEventListener("click", () => {
+        const id = document.getElementById("nomePesquisa").value;
+
+        if (!id) {
+            return alert("Por favor, informe o ID do coordenador para excluir.");
+        }
+
+        if (confirm("Tem certeza que deseja excluir esse Coordenador?")) {
+            fetch(`http://localhost:3000/coordenadores/${id}`, {
+                method: "DELETE"
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error("Erro ao excluir o coordenador.");
+                }
+                return response.json();
+            })
+            .then(data => {
+                alert(data.mensagem);
+                document.getElementById("coordernador-nome").value = "";
+                document.getElementById("codigo-coordenador").value = "";
+                document.getElementById("inputId").value = "";
+                document.getElementById("email-coordernador").value = "";
+                document.getElementById("Telefone-coordernador").value = "";
+                document.getElementById("nomePesquisa").value = "";
+            })
+            .catch(error => {
+                alert(error.message);
+            });
+    }})}
+
+    const bntExcluirDocente = document.getElementById("excluirDocente");
+
+if (bntExcluirDocente) {
+    bntExcluirDocente.addEventListener("click", () => {
+        const id = document.getElementById("nomePesquisaDocente").value;
+
+        if (!id) {
+            return alert("Por favor, informe o ID do docente para excluir.");
+        }
+
+        if (confirm("Tem certeza que deseja excluir esse docente?")) {
+            fetch(`http://localhost:3000/docentes/${id}`, {
+                method: "DELETE"
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error("Erro ao excluir o docente.");
+                }
+                return response.json();
+            })
+            .then(data => {
+                alert(data.mensagem);
+                document.getElementById("docente-nome").value = "";
+                document.getElementById("area-docente").value = "";
+                document.getElementById("id-docente").value = "";
+                document.getElementById("email-docente").value = "";
+                document.getElementById("Telefone-docente").value = "";
+                document.getElementById("nomePesquisaDocente").value = "";
+            })
+            .catch(error => {
+                alert(error.message);
+            });
+    }})}
+
+    
+    // Evento para o botão "Editar Docente"
+    const btnEditar = document.querySelector('#editarDocente');
+    if (btnEditar) {
+        btnEditar.addEventListener('click', () => {
+            console.log('Botão "Editar Docente" clicado!');
+            
+            // Tornando os campos editáveis ao clicar no botão "Editar"
+            document.querySelector('#docente-nome').readOnly = false;
+            document.querySelector('#email-docente').readOnly = false;
+            document.querySelector('#Telefone-docente').readOnly = false;
+            document.querySelector('#area-docente').readOnly = false;
+            
+        });
+    };
+
+    const btnEditarCordenador = document.querySelector('#editarCoordenador');
+    if (btnEditarCordenador) {
+        btnEditarCordenador.addEventListener('click', () => {
+            console.log('Botão "Editar Coordenador" clicado!');
+            
+            // Tornando os campos editáveis ao clicar no botão "Editar"
+            document.querySelector('#coordernador-nome').readOnly = false;
+            document.querySelector('#email-coordernador').readOnly = false;
+            document.querySelector('#Telefone-coordernador').readOnly = false;
+            document.querySelector('#codigo-coordenador').readOnly = false;
+        });
+    }
+
+    const btnSalvarDocente = document.querySelector('#salvarDocente');
+    if (btnSalvarDocente) {
+        btnSalvarDocente.addEventListener('click', async () => {
+            const docente_id = document.getElementById("id-docente").value;
+            const nome_docente = document.getElementById("docente-nome").value;
+            const area = document.getElementById("area-docente").value;
+            const email_docente = document.getElementById("email-docente").value;
+            const telefone_docente = document.getElementById("Telefone-docente").value;
+    
+            const dadosAtualizados = {
+                docente_id,
+                nome_docente,
+                area,
+                email_docente,
+                telefone_docente
+            };
+    
+            console.log("Dados enviados para atualização:", dadosAtualizados);
+    
+            try {
+                const response = await fetch("http://localhost:3000/update-docentes", {
+                    method: "PUT",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify(dadosAtualizados)
+                });
+    
+                const data = await response.json();
+    
+                if (response.ok) {
+                    alert(data.message);
+                    console.log(" Docente atualizado com sucesso.");
+                } else {
+                    alert("Erro ao atualizar docente: " + data.message);
+                    console.warn(" Erro na resposta HTTP:", response.status);
+                }
+            } catch (erro) {
+                console.error("Erro na requisição:", erro);
+                alert("Erro ao conectar com o servidor.");
+            }
+
+        }
+    )}
+
+    const btnSalvarCordenador = document.querySelector('#salvarCordenador');
+    if (btnSalvarCordenador) {
+        btnSalvarCordenador.addEventListener('click', async () => {
+
+            const nome_coordenador = document.getElementById("coordernador-nome").value;
+            const telefone_coordenador = document.getElementById("Telefone-coordernador").value;
+            const coordenador_id = document.getElementById("inputId").value;
+            const email_coordenador = document.getElementById("email-coordernador").value;
+            const codigo = document.getElementById("codigo-coordenador").value;
+    
+            const dadosAtualizados = {
+                coordenador_id,
+                nome_coordenador,
+                codigo,
+                email_coordenador,
+                telefone_coordenador
+            };
+    
+            console.log("Dados enviados para atualização:", dadosAtualizados);
+    
+            try {
+                const response = await fetch("http://localhost:3000/update-coordenadores", {
+                    method: "PUT",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify(dadosAtualizados)
+                });
+    
+                const data = await response.json();
+    
+                if (response.ok) {
+                    alert(data.message);
+                    console.log(" coordenador atualizado com sucesso.");
+                } else {
+                    alert("Erro ao atualizar coordenador: " + data.message);
+                    console.warn(" Erro na resposta HTTP:", response.status);
+                }
+            } catch (erro) {
+                console.error("Erro na requisição:", erro);
+                alert("Erro ao conectar com o servidor.");
+            }
+
+        }
+    )}
 //Mostra campos de docente ou coordenador
 function mostrarCampos() {
     // Pega o VALOR selecionado
