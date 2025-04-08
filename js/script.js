@@ -1,6 +1,6 @@
 // Botão Voltar
 document.querySelector('#botao-voltar')?.addEventListener('click', () => {
-    window.location.href = 'principal.html';
+    window.location.href = 'inicio.html';
 });
 
 // Captura do formulário para evitar recarregamento da página
@@ -223,3 +223,19 @@ document.getElementById("pesquisar").addEventListener("click", () => {
             document.getElementById("Telefone-coordernador").value = data.telefone_coordenador;
         })
 });
+//Mostra campos de docente ou coordenador
+function mostrarCampos() {
+    // Pega o VALOR selecionado
+    var selecao = document.getElementById('nivel_acesso').value;
+
+    // Esconder os campos
+    document.getElementById('campo-docente').style.display = 'none';
+    document.getElementById('campo-coordenador').style.display = 'none';
+
+    // Mostrar o campo correto
+    if(selecao === "docente"){
+        document.getElementById('campo-docente').style.display = 'block';
+    } else if(selecao === "coordenador"){
+        document.getElementById('campo-coordenador').style.display = 'block';
+    }
+}
