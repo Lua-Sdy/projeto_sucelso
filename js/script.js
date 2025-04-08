@@ -1,6 +1,6 @@
 // Botão Voltar
 document.querySelector('#botao-voltar')?.addEventListener('click', () => {
-    window.location.href = 'principal.html';
+    window.location.href = 'inicio.html';
 });
 
 // Captura do formulário para evitar recarregamento da página
