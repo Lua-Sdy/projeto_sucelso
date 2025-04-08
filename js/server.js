@@ -146,6 +146,21 @@ app.get('/login', (req, res) => {
     });
 });
 
+app.get('/coordenadores/:coordenador_id', (req, res) => {
+    const coordenador_id = req.params.coordenador_id;
+    console.log("Procurando coordenador com id:", coordenador_id);
+    console.log(coordenador_id)
+    db.query('SELECT * FROM coordenadores WHERE coordenador_id = ?', [coordenador_id], (err, results) => {
+        if (err) throw err;
+        
+        if (results.length === 0) {
+            return res.status(404).json({ mensagem: "Coordenador não encontrado" });
+        }
+
+        res.json(results[0]);
+    });
+});
+
 
 // Servindo arquivos estáticos
 app.use(express.static(path.join(__dirname, '../html')));
