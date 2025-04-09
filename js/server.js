@@ -146,35 +146,46 @@ app.get('/login', (req, res) => {
     });
 });
 
-app.get('/coordenadores/:coordenador_id', (req, res) => {
-    const coordenador_id = req.params.coordenador_id;
-    console.log("Procurando coordenador com id:", coordenador_id);
-    console.log(coordenador_id)
-    db.query('SELECT * FROM coordenadores WHERE coordenador_id = ?', [coordenador_id], (err, results) => {
+app.get('/coordenadores/:filtro', (req, res) => {
+    const filtro = req.params.filtro;
+
+    const query = isNaN(filtro) 
+        ? 'SELECT * FROM coordenadores WHERE nome_coordenador LIKE ?' 
+        : 'SELECT * FROM coordenadores WHERE coordenador_id = ?';
+
+    const parametros = isNaN(filtro) ? [`%${filtro}%`] : [filtro];
+
+    db.query(query, parametros, (err, results) => {
         if (err) throw err;
-        
+
         if (results.length === 0) {
             return res.status(404).json({ mensagem: "Coordenador não encontrado" });
         }
 
-        res.json(results[0]);
+        res.json(results[0]); 
     });
 });
 
-app.get('/docentes/:docente_id', (req, res) => {
-    const docente_id = req.params.docente_id;
-    console.log("Procurando docente com id:", docente_id);
-    console.log(docente_id)
-    db.query('SELECT * FROM docentes WHERE docente_id = ?', [docente_id], (err, results) => {
+app.get('/docentes/:filtro', (req, res) => {
+    const filtro = req.params.filtro;
+
+    const query = isNaN(filtro) 
+        ? 'SELECT * FROM docentes WHERE nome_docente LIKE ?' 
+        : 'SELECT * FROM docentes WHERE docente_id = ?';
+
+    const parametros = isNaN(filtro) ? [`%${filtro}%`] : [filtro];
+
+    db.query(query, parametros, (err, results) => {
         if (err) throw err;
-        
+
         if (results.length === 0) {
             return res.status(404).json({ mensagem: "Docente não encontrado" });
         }
 
-        res.json(results[0]);
+        res.json(results[0]); // pega o primeiro que achar
     });
 });
+
 
 app.delete('/coordenadores/:coordenador_id', (req, res) => {
     const coordenador_id = req.params.coordenador_id;

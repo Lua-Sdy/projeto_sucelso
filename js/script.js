@@ -205,13 +205,13 @@ const btnPesquisar = document.getElementById("pesquisar");
 
 if (btnPesquisar) {
     btnPesquisar.addEventListener("click", () => {
-        const id = document.getElementById("nomePesquisa").value;
+        const filtro = document.getElementById("nomePesquisa").value;
 
-        if (!id) {
-            return alert('Preencha id!');
+        if (!filtro) {
+            return alert('Preencha o ID ou Nome!');
         }
 
-        fetch(`http://localhost:3000/coordenadores/${id}`)
+        fetch(`http://localhost:3000/coordenadores/${filtro}`)
             .then(response => {
                 if (!response.ok) {
                     throw new Error("Coordenador não encontrado");
@@ -225,6 +225,9 @@ if (btnPesquisar) {
                 document.getElementById("email-coordernador").value = data.email_coordenador;
                 document.getElementById("Telefone-coordernador").value = data.telefone_coordenador;
             })
+            .catch(error => {
+                alert(error.message);
+            });
     });
 }
 
@@ -233,27 +236,31 @@ const btnPesquisarDocente = document.getElementById("pesquisarDocente");
 
 if (btnPesquisarDocente) {
     btnPesquisarDocente.addEventListener("click", () => {
-    const id = document.getElementById("nomePesquisaDocente").value;
+        const filtro = document.getElementById("nomePesquisaDocente").value;
 
-    if (!id) {
-        return alert('Preencha id!');
-    }
+        if (!filtro) {
+            return alert('Preencha o nome ou ID!');
+        }
 
-    fetch(`http://localhost:3000/docentes/${id}`)
-        .then(response => {
-            if (!response.ok) {
-                throw new Error("Docente não encontrado");
-            }
-            return response.json();
-        })
-        .then(data => {
-            document.getElementById("docente-nome").value = data.nome_docente;
-            document.getElementById("area-docente").value = data.area;
-            document.getElementById("id-docente").value = data.docente_id;
-            document.getElementById("email-docente").value = data.email_docente;
-            document.getElementById("Telefone-docente").value = data.telefone_docente;
-        })
-})};
+        fetch(`http://localhost:3000/docentes/${filtro}`)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error("Docente não encontrado");
+                }
+                return response.json();
+            })
+            .then(data => {
+                document.getElementById("docente-nome").value = data.nome_docente;
+                document.getElementById("area-docente").value = data.area;
+                document.getElementById("id-docente").value = data.docente_id;
+                document.getElementById("email-docente").value = data.email_docente;
+                document.getElementById("Telefone-docente").value = data.telefone_docente;
+            })
+            .catch(error => {
+                alert(error.message);
+            })
+    });
+}
 
 const bntExcluirCoordenador = document.getElementById("excluirCoordenador");
 
