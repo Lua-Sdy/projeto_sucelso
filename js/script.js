@@ -465,3 +465,119 @@ function mostrarCampos() {
         document.getElementById('campo-coordenador').style.display = 'block';
     }
 }
+const btnPesquisarTurma = document.getElementById("pesquisarTurma");
+
+if (btnPesquisarTurma) {
+    btnPesquisarTurma.addEventListener("click", () => {
+        const filtro = document.getElementById("pesquisaTurma").value;
+
+        if (!filtro) {
+            return alert('Preencha o nome ou ID da turma!');
+        }
+
+        fetch(`http://localhost:3000/turmas/${filtro}`)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error("Turma não encontrada");
+                }
+                return response.json();
+            })
+            .then(data => {
+                document.getElementById("turma_nome").value = data.nome_turma;
+                document.getElementById("inputId").value = data.turma_id;
+                document.getElementById("curso").value = data.curso;
+                document.getElementById("periodo").value = data.periodo;
+            })
+            .catch(error => {
+                alert(error.message);
+            });
+    });
+}
+const btnExcluirTurma = document.getElementById("excluirTurma");
+
+if (btnExcluirTurma) {
+    btnExcluirTurma.addEventListener("click", () => {
+        const id = document.getElementById("pesquisaTurma").value;
+
+        if (!id) {
+            return alert("Por favor, informe o ID da turma para excluir.");
+        }
+
+        if (confirm("Tem certeza que deseja excluir essa Turma?")) {
+            fetch(`http://localhost:3000/turmas/${id}`, {
+                method: "DELETE"
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error("Erro ao excluir a turma.");
+                }
+                return response.json();
+            })
+            .then(data => {
+                alert(data.mensagem);
+                document.getElementById("turma_nome").value = "";
+                document.getElementById("inputId").value = "";
+                document.getElementById("curso").value = "";
+                document.getElementById("periodo").value = "";
+                document.getElementById("pesquisaTurma").value = "";
+            })
+            .catch(error => {
+                alert(error.message);
+            });
+        }
+    });
+}
+const btnEditarTurma = document.querySelector('#editarTurma');
+
+if (btnEditarTurma) {
+    btnEditarTurma.addEventListener('click', () => {
+        console.log('Botão "Editar Turma" clicado!');
+
+        // Tornando os campos da turma editáveis
+        document.querySelector('#turma_nome').readOnly = false;
+        document.querySelector('#curso').readOnly = false;
+        document.querySelector('#periodo').readOnly = false;
+    });
+}
+const btnSalvarTurma = document.querySelector('#salvarTurma');
+
+if (btnSalvarTurma) {
+    btnSalvarTurma.addEventListener('click', async () => {
+        const turma_id = document.getElementById("inputId").value;
+        const nome_turma = document.getElementById("turma_nome").value;
+        const curso = document.getElementById("curso").value;
+        const periodo = document.getElementById("periodo").value;
+
+        const dadosAtualizados = {
+            turma_id,
+            nome_turma,
+            curso,
+            periodo
+        };
+
+        console.log("Dados enviados para atualização da turma:", dadosAtualizados);
+
+        try {
+            const response = await fetch("http://localhost:3000/update-turmas", {
+                method: "PUT",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(dadosAtualizados)
+            });
+
+            const data = await response.json();
+
+            if (response.ok) {
+                alert(data.message);
+                console.log("Turma atualizada com sucesso.");
+            } else {
+                alert("Erro ao atualizar turma: " + data.message);
+                console.warn("Erro na resposta HTTP:", response.status);
+            }
+        } catch (erro) {
+            console.error("Erro na requisição:", erro);
+            alert("Erro ao conectar com o servidor.");
+        }
+    });
+}
