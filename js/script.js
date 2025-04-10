@@ -581,3 +581,28 @@ if (btnSalvarTurma) {
         }
     });
 }
+
+document.getElementById('gerarPdf')?.addEventListener('click', function() {
+    // Agora acessa o .value do input corretamente
+    const nomeTurma = document.getElementById('turma_nome')?.value.trim() || 'turma-sem-nome';
+
+    const elementoParaPdf = document.getElementById('areaPdf');
+    
+    const opt = {
+        margin: 10,
+        filename: `${nomeTurma}.pdf`, // Nome dinâmico baseado na turma
+        image: { type: 'jpeg', quality: 0.98 },
+        html2canvas: { 
+            scale: 2,
+            logging: true,
+            useCORS: true
+        },
+        jsPDF: { 
+            unit: 'mm', 
+            format: 'a4', 
+            orientation: 'portrait' 
+        }
+    };
+
+    html2pdf().set(opt).from(document.body).save();
+});
