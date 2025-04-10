@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../STYLE/style.css">
     <link rel="stylesheet" href="../STYLE/painel-lateral.css">
+    <link rel="stylesheet" href="../STYLE/page_editar.css">
     <link rel="icon" href="../IMG/Simbolo.png">
     <title>BASE LIMPA</title>
     <!-- Adicione o Font Awesome para o ícone de menu -->
@@ -29,7 +30,7 @@
                 <li><a href="codernador-cadastro.html">Cadastrar Coordernador</a></li>
                 <li><a href="cadastro-usuario.html">Cadastrar Usuario</a></li>
                 <li><a href="cadastro-turma.html">Cadastrar Turma</a></li>
-                <li><a href="cadastro-horarios.html">Horarios</a></li>
+                <li><a href="edicao.html">Editar Horarios</a></li>
                 <li><a href="consulta-docente.html">Consultar Docente</a></li>
                 <li><a href="consultar-coordernador.html">Consultar Coordernador</a></li>
                 <li><a href="#">Relatorios</a></li>
@@ -40,8 +41,113 @@
     </header>
     
     <main>
-        <!-- Vai aprecer uma mensagem de boas vindas como o nome do usuario -->
-        <h3>Bem vindo(a) <span id="nomeUsuario"></span>!</h3>
+        <h2>Edição de Tabelas</h2>
+                
+        <!-- Tabela de Registros -->
+        <div class="secao-tabela">
+            <h3 class="secao-titulo">Registros</h3>
+            
+            <div class="barra-acoes">
+                <button class="btn-acao btn-editar" onclick="adicionarLinha('tabela-registros')">Adicionar Linha</button>
+                <button class="btn-acao btn-salvar" onclick="salvarAlteracoes()">Salvar Alterações</button>
+            </div>
+            
+            <div class="tabela-container">
+                <table class="tabela-edicao" id="tabela-registros">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Nome</th>
+                            <th>Turma</th>
+                            <th>Data</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td contenteditable="false"></td>
+                            <td contenteditable="false"></td>
+                            <td contenteditable="false"></td>
+                            <td class="acoes-cell">
+                                <button class="btn-acao btn-editar" onclick="habilitarEdicao(this)">Editar</button>
+                                <button class="btn-acao btn-excluir" onclick="excluirLinha(this)">Excluir</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        
+        <!-- Tabela de Horários -->
+        <div class="secao-tabela">
+            <h3 class="secao-titulo">Horários</h3>
+            
+            <div class="filtros-horario">
+                <span>Visualização:</span>
+                <button class="btn-acao btn-filtro" onclick="filtrarHorarios('diario')">Lista</button>
+                <button class="btn-acao btn-filtro" id="btn-semanal" onclick="filtrarHorarios('semanal')">Semanal</button>
+            </div>
+            
+            <div class="barra-acoes">
+                <button class="btn-acao btn-editar" onclick="adicionarLinha('tabela-horarios')">Adicionar Horário</button>
+                <button class="btn-acao btn-salvar" onclick="salvarAlteracoesHorarios()">Salvar Horários</button>
+            </div>
+            
+            <!-- Visualização em lista -->
+            <div class="tabela-container" id="visualizacao-lista">
+                <table class="tabela-horario" id="tabela-horarios">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Dia da Semana</th>
+                            <th>Horário</th>
+                            <th>Turma</th>
+                            <th>Atividade</th>
+                            <th>Professor</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td contenteditable="false"></td>
+                            <td contenteditable="false"></td>
+                            <td contenteditable="false"></td>
+                            <td contenteditable="false"></td>
+                            <td contenteditable="false"></td>
+                            <td class="acoes-cell">
+                                <button class="btn-acao btn-editar" onclick="habilitarEdicao(this)">Editar</button>
+                                <button class="btn-acao btn-excluir" onclick="excluirLinha(this)">Excluir</button>
+                            </td>
+                        </tr>
+                       
+                    </tbody>
+                </table>
+            </div>
+            
+            <!-- Visualização semanal -->
+            <div class="tabela-container visualizacao-semanal" id="visualizacao-semanal">
+                <table class="tabela-horario">
+                    <thead>
+                        <tr>
+                            <th>Horário</th>
+                            <th>Segunda-feira</th>
+                            <th>Terça-feira</th>
+                            <th>Quarta-feira</th>
+                            <th>Quinta-feira</th>
+                            <th>Sexta-feira</th>
+                        </tr>
+                    </thead>
+                    <tbody id="corpo-semanal">
+                        <!-- Preenchido dinamicamente pelo JavaScript -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+</div>
+</header>
     </main>
 
     <footer id="rodape">
@@ -59,5 +165,6 @@
     </footer>
     
     <script src="../js/painel.js"></script>
+    <script src="../js/pag_edicao.js"></script>
 </body>
 </html>
