@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,6 +12,7 @@
     <!-- Adicione o Font Awesome para o ícone de menu -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
+
 <body class="organizacao-geral">
     <header id="cabecalho">
         <div class="menu-container">
@@ -20,7 +22,7 @@
             <img src="../IMG/logo_completa.png" alt="logo da empresa">
         </div>
         <h1>Senai-Sucelso</h1>
-        
+
         <!-- Painel Lateral -->
         <div id="sidePanel" class="side-panel">
             <button id="closeButton" class="close-button">&times;</button>
@@ -39,61 +41,26 @@
         </div>
         <div id="overlay" class="overlay"></div>
     </header>
-    
+
     <main>
-        <h2>Edição de Tabelas</h2>
-                
-        <!-- Tabela de Registros -->
-        <div class="secao-tabela">
-            <h3 class="secao-titulo">Registros</h3>
-            
-            <div class="barra-acoes">
-                <button class="btn-acao btn-editar" onclick="adicionarLinha('tabela-registros')">Adicionar Linha</button>
-                <button class="btn-acao btn-salvar" onclick="salvarAlteracoes()">Salvar Alterações</button>
-            </div>
-            
-            <div class="tabela-container">
-                <table class="tabela-edicao" id="tabela-registros">
-                    <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Nome</th>
-                            <th>Turma</th>
-                            <th>Data</th>
-                            <th>Ações</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td contenteditable="false"></td>
-                            <td contenteditable="false"></td>
-                            <td contenteditable="false"></td>
-                            <td class="acoes-cell">
-                                <button class="btn-acao btn-editar" onclick="habilitarEdicao(this)">Editar</button>
-                                <button class="btn-acao btn-excluir" onclick="excluirLinha(this)">Excluir</button>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-        
+
         <!-- Tabela de Horários -->
         <div class="secao-tabela">
             <h3 class="secao-titulo">Horários</h3>
-            
+
+            <input type="text" id="inputBuscaHorarios" placeholder="Digite o ID">
+            <button id="pesquisar">Pesquisar</button>
             <div class="filtros-horario">
                 <span>Visualização:</span>
                 <button class="btn-acao btn-filtro" onclick="filtrarHorarios('diario')">Lista</button>
-                <button class="btn-acao btn-filtro" id="btn-semanal" onclick="filtrarHorarios('semanal')">Semanal</button>
+                <button class="btn-acao btn-filtro" id="btn-semanal"
+                    onclick="filtrarHorarios('semanal')">Semanal</button>
             </div>
-            
+
             <div class="barra-acoes">
-                <button class="btn-acao btn-editar" onclick="adicionarLinha('tabela-horarios')">Adicionar Horário</button>
                 <button class="btn-acao btn-salvar" onclick="salvarAlteracoesHorarios()">Salvar Horários</button>
             </div>
-            
+
             <!-- Visualização em lista -->
             <div class="tabela-container" id="visualizacao-lista">
                 <table class="tabela-horario" id="tabela-horarios">
@@ -101,10 +68,10 @@
                         <tr>
                             <th>ID</th>
                             <th>Dia da Semana</th>
-                            <th>Horário</th>
-                            <th>Turma</th>
-                            <th>Atividade</th>
-                            <th>Professor</th>
+                            <th>Horário inicio</th>
+                            <th>Horário termino</th>
+                            <th>id Turma</th>
+                            <th>id Professor</th>
                             <th>Ações</th>
                         </tr>
                     </thead>
@@ -121,11 +88,11 @@
                                 <button class="btn-acao btn-excluir" onclick="excluirLinha(this)">Excluir</button>
                             </td>
                         </tr>
-                       
+
                     </tbody>
                 </table>
             </div>
-            
+
             <!-- Visualização semanal -->
             <div class="tabela-container visualizacao-semanal" id="visualizacao-semanal">
                 <table class="tabela-horario">
@@ -146,12 +113,12 @@
             </div>
         </div>
     </main>
-</div>
-</header>
+    </div>
+    </header>
     </main>
 
     <footer id="rodape">
-        <div class="links__git"> 
+        <div class="links__git">
             <ul>
                 <li><a href="https://github.com/HelloWorldGuys">Álvaro</a></li>
                 <li><a href="https://github.com/Lua-Sdy">Luã</a></li>
@@ -163,8 +130,10 @@
         <p>&copy; 2025</p>
         <img src="../../IMG/Logo_nome.png" alt="logo simples">
     </footer>
-    
+
     <script src="../js/painel.js"></script>
     <script src="../js/pag_edicao.js"></script>
+    <script src="../js/script.js"></script>
 </body>
+
 </html>
