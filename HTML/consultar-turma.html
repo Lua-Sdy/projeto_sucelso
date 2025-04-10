@@ -9,12 +9,15 @@
     <link rel="stylesheet" href="../STYLE/consulta.css">
     <link rel="stylesheet" href="../STYLE/painel-lateral.css">
     <link rel="icon" href="../IMG/Simbolo.png">
-    <title>Consultar Coordenador</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <title>Consultar Turma</title>
+    
+    
     
 </head>
 
 <body class="organizacao-geral">
+    </div>
     <header id="cabecalho">
         <div class="menu-container">
             <button id="menuButton" class="menu-button">
@@ -62,7 +65,7 @@
 
         <!-- Área de resultados organizada -->
         <div class="pesquisa-container2">
-            <div class="resultados-wrapper">
+            <div class="resultados-wrapper" id="areaPdf">
                 <div class="form-pesquisa">
                     <!--Nome coordernador-->
                     <input type="text" id="turma_nome" placeholder="NOME" readonly>
@@ -85,6 +88,9 @@
                     <button id="excluirTurma"><i class="fas fa-trash-alt"></i> Excluir</button>
                     <button id="editarTurma"><i class="fas fa-edit"></i> Editar</button>
                     <button id="salvarTurma"><i class="fas fa-save"></i> Salvar</button>
+                    <button id="gerarPdf" class="botao-pdf">
+                    <i class="fas fa-file-pdf"></i> Exportar para PDF </button>
+                    
                 </div>
             </div>
         </div>
@@ -103,7 +109,7 @@
         <p>&copy; 2025</p>
         <img src="../IMG/Logo_nome.png" alt="logo simples">
     </footer>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
     <script src="../JS/script.js"></script>
     <script src="../JS/painel.js"></script>
    

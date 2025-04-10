@@ -1,0 +1,64 @@
+#pdf-template {
+    font-family: Arial, sans-serif;
+    width: 210mm; /* Tamanho A4 */
+    min-height: 297mm;
+    padding: 20mm;
+    box-sizing: border-box;
+    background-color: white;
+    color: #333;
+}
+
+.pdf-header {
+    text-align: center;
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    border-bottom: 2px solid #0066cc;
+}
+
+.pdf-header img {
+    height: 50px;
+    margin-bottom: 10px;
+}
+
+.pdf-header h1 {
+    color: #0066cc;
+    margin: 10px 0;
+    font-size: 24pt;
+}
+
+.pdf-content {
+    margin-top: 30px;
+}
+
+.pdf-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.pdf-table th {
+    background-color: #0066cc;
+    color: white;
+    padding: 10px;
+    text-align: left;
+}
+
+.pdf-table td {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+/* Estilo do botão na página (não no PDF) */
+.botao-pdf {
+    background-color: #e74c3c;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: background-color 0.3s;
+}
