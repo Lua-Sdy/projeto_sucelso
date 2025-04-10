@@ -14,7 +14,7 @@ const PORT = process.env.PORT || 3000;
 const db = mysql.createConnection({
     host: 'localhost',
     user: 'root',
-    password: 'mario0705',
+    password: '',
     database: 'projeto1'
 });
 
@@ -264,6 +264,66 @@ app.put("/update-docentes", (req, res) => {
             console.warn(" Docente não encontrado.");
             return res.status(404).json({ status: 404, message: 'Docente não encontrado' });
         }
+    });
+});
+app.get('/turmas/:filtro', (req, res) => {
+    const filtro = req.params.filtro;
+
+    const query = isNaN(filtro)
+        ? 'SELECT * FROM turmas WHERE nome_turma LIKE ?'
+        : 'SELECT * FROM turmas WHERE turma_id = ?';
+
+    const parametros = isNaN(filtro) ? [`%${filtro}%`] : [filtro];
+
+    db.query(query, parametros, (err, results) => {
+        if (err) {
+            console.error(err);
+            return res.status(500).json({ mensagem: "Erro ao buscar turma" });
+        }
+
+        if (results.length === 0) {
+            return res.status(404).json({ mensagem: "Turma não encontrada" });
+        }
+
+        res.json(results[0]); // retorna a primeira turma encontrada
+    });
+});
+app.put("/update-turmas", (req, res) => {
+    console.log("Dados recebidos para atualização de turma:", req.body);
+
+    const { turma_id, nome_turma, curso, periodo } = req.body;
+
+    if (!turma_id) {
+        console.error("ID da turma não fornecido.");
+        return res.status(400).json({ status: 400, message: 'ID da turma é necessário' });
+    }
+
+    const query = `
+        UPDATE turmas 
+        SET nome_turma = ?, curso = ?, periodo = ?
+        WHERE turma_id = ?
+    `;
+
+    db.query(query, [nome_turma, curso, periodo, turma_id], (err, result) => {
+        if (err) {
+            console.error("Erro ao atualizar turma:", err);
+            return res.status(500).json({ status: 500, message: 'Erro ao atualizar turma' });
+        }
+
+        if (result.affectedRows > 0) {
+            console.log("Turma atualizada com sucesso.");
+            return res.status(200).json({ status: 200, message: 'Turma atualizada com sucesso' });
+        } else {
+            console.warn("Turma não encontrada.");
+            return res.status(404).json({ status: 404, message: 'Turma não encontrada' });
+        }
+    });
+});
+app.delete('/turmas/:turma_id', (req, res) => {
+    const turma_id = req.params.turma_id;
+    db.query('DELETE FROM turmas WHERE turma_id = ?', turma_id, (err) => {
+        if (err) throw err;
+        res.json({ mensagem: 'Turma excluída com sucelso!' });
     });
 });
 
