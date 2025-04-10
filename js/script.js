@@ -581,3 +581,135 @@ if (btnSalvarTurma) {
         }
     });
 }
+    const buscarHorarios = document.querySelector('#pesquisar');
+
+if (buscarHorarios) {
+    buscarHorarios.addEventListener('click', async () => {
+    const id = document.getElementById('inputBuscaHorarios').value;
+
+    if (!id) {
+        alert('Digite um ID para buscar!');
+        return;
+    }
+
+    try {
+        const response = await fetch(`http://localhost:3000/horarios_docentes/buscar/${id}`);
+
+        if (!response.ok) {
+            throw new Error('Erro ao buscar horários');
+        }
+
+        const dados = await response.json();
+
+        preencherTabela(dados);
+
+    } catch (error) {
+        console.error('Erro:', error);
+        alert('Erro ao buscar horários');
+    }
+})}
+
+function preencherTabela(dados) {
+    const tbody = document.querySelector('#tabela-horarios tbody');
+
+    tbody.innerHTML = ''; // Limpa a tabela
+
+    if (dados.length === 0) {
+        tbody.innerHTML = '<tr><td colspan="7">Nenhum horário encontrado.</td></tr>';
+        return;
+    }
+
+    dados.forEach(horario => {
+        const tr = document.createElement('tr');
+
+        tr.innerHTML = `
+            <td>${horario.hora_doc_id}</td>
+            <td>${horario.dia_semana}</td>
+            <td>${horario.hora_inicio}</td>
+            <td>${horario.hora_fim}</td>
+            <td>${horario.turma_id_fk}</td>
+            <td>${horario.docente_id_fk}</td>
+            <td class="acoes-cell">
+                <button class="btn-acao btn-editar" onclick="habilitarEdicao(this)">Editar</button>
+                <button class="btn-acao btn-excluir" onclick="excluirLinha(this)">Excluir</button>
+            </td>
+        `;
+
+        tbody.appendChild(tr);
+    });
+}
+
+async function excluirLinha(botao) {
+    if (!confirm('Tem certeza que deseja excluir este horário?')) {
+        return; // Usuário cancelou
+    }
+
+    const linha = botao.closest('tr'); // Pega a linha da tabela
+    const horaDocId = linha.querySelector('td').textContent; // Pega o ID (está na primeira coluna)
+
+    try {
+        const response = await fetch(`http://localhost:3000/horarios_docentes/${horaDocId}`, {
+            method: 'DELETE'
+        });
+
+        if (!response.ok) {
+            throw new Error('Erro ao excluir horário');
+        }
+
+        alert('Horário excluído com sucesso!');
+        linha.remove(); // Remove a linha da tabela
+
+    } catch (error) {
+        console.error('Erro:', error);
+        alert('Erro ao excluir horário');
+    }
+}
+
+function habilitarEdicao(botao) {
+    const linha = botao.closest('tr');
+    const colunasEditaveis = [1, 2, 3]; // Dia da semana, Hora início, Hora fim
+
+    colunasEditaveis.forEach(index => {
+        linha.cells[index].setAttribute('contenteditable', 'true');
+    });
+
+    linha.classList.add('editando');
+}
+
+function salvarAlteracoesHorarios() {
+    const linhas = document.querySelectorAll('#tabela-horarios tbody tr.editando');
+
+    linhas.forEach(linha => {
+        const hora_doc_id = linha.cells[0].innerText;
+        const dia_semana = linha.cells[1].innerText;
+        const hora_inicio = linha.cells[2].innerText;
+        const hora_fim = linha.cells[3].innerText;
+
+        fetch('http://localhost:3000/update-horarios_docentes', {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                hora_doc_id,
+                dia_semana,
+                hora_inicio,
+                hora_fim
+            })
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log(data.message);
+            alert(data.message);
+            linha.classList.remove('editando');
+            linha.querySelectorAll('[contenteditable=true]').forEach(cell => {
+                cell.setAttribute('contenteditable', 'false');
+            });
+        })
+        .catch(error => {
+            console.error('Erro ao salvar horário:', error);
+        });
+    });
+}
+
+

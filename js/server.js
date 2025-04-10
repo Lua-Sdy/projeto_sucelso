@@ -14,7 +14,7 @@ const PORT = process.env.PORT || 3000;
 const db = mysql.createConnection({
     host: 'localhost',
     user: 'root',
-    password: '',
+    password: 'mario0705',
     database: 'projeto1'
 });
 
@@ -324,6 +324,66 @@ app.delete('/turmas/:turma_id', (req, res) => {
     db.query('DELETE FROM turmas WHERE turma_id = ?', turma_id, (err) => {
         if (err) throw err;
         res.json({ mensagem: 'Turma excluída com sucelso!' });
+    });
+});
+
+app.get('/horarios_docentes/buscar/:id', (req, res) => {
+    const id = req.params.id;
+
+    const sql = `
+        SELECT * FROM horarios_docentes 
+        WHERE hora_doc_id = ? 
+        OR docente_id_fk = ? 
+        OR turma_id_fk = ?
+    `;
+
+    db.query(sql, [id, id, id], (err, results) => {
+        if (err) {
+            console.error('Erro ao buscar horários:', err);
+            return res.status(500).json({ error: 'Erro ao buscar horários' });
+        }
+        res.json(results);
+    });
+});
+
+
+app.put("/update-horarios_docentes", (req, res) => {
+    console.log("Dados recebidos para atualização de horario:", req.body);
+
+    const { hora_doc_id, dia_semana, hora_inicio, hora_fim } = req.body;
+
+    if (!hora_doc_id) {
+        console.error("ID do horario não fornecido.");
+        return res.status(400).json({ status: 400, message: 'ID do horario é necessário' });
+    }
+
+    const query = `
+        UPDATE horarios_docentes 
+        SET dia_semana = ?, hora_inicio = ?, hora_fim = ?
+        WHERE hora_doc_id = ?
+    `;
+
+    db.query(query, [dia_semana, hora_inicio, hora_fim, hora_doc_id], (err, result) => {
+        if (err) {
+            console.error("Erro ao atualizar horario:", err);
+            return res.status(500).json({ status: 500, message: 'Erro ao atualizar horario' });
+        }
+
+        if (result.affectedRows > 0) {
+            console.log("Horario atualizado com sucesso.");
+            return res.status(200).json({ status: 200, message: 'Horario atualizado com sucesso' });
+        } else {
+            console.warn("Horario não encontrado.");
+            return res.status(404).json({ status: 404, message: 'Horario não encontrado' });
+        }
+    });
+});
+
+app.delete('/horarios_docentes/:hora_doc_id', (req, res) => {
+    const hora_doc_id = req.params.hora_doc_id;
+    db.query('DELETE FROM horarios_docentes WHERE hora_doc_id = ?', hora_doc_id, (err) => {
+        if (err) throw err;
+        res.json({ mensagem: 'horario excluída com sucelso!' });
     });
 });
 
