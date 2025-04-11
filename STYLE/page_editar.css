@@ -258,3 +258,27 @@
     outline: 2px solid #17a2b8;
     background-color: #e2f6fa !important;
 }
+
+#gerarPdf{
+    background-color: #3498db;
+    border: orange;
+    color: white;
+    border-radius: 4px;
+    padding: 5px;
+}
+#gerarPdf:hover{
+    cursor: pointer;
+    opacity: 0.9;
+}
+
+#pesquisar{
+    background-color: #b1c029;
+    border: orange;
+    color: white;
+    border-radius: 4px;
+    padding: 5px;
+}
+#pesquisar:hover{
+    cursor: pointer;
+    opacity: 0.9;
+}

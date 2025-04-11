@@ -26,10 +26,15 @@
     left: -250px;
     width: 250px;
     height: 100%;
-    background-color: #fff;
+    background-color: #88b8e7;
     box-shadow: 2px 0 10px rgba(0,0,0,0.1);
     transition: left 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55);
     z-index: 1000;
+    border: solid #f07421fb 5px ;
+    border-radius: 16px;
+}
+.side-panel li a {
+    color: #f07421fb;
 }
 
 .close-button {
@@ -69,7 +74,6 @@
 
 .panel-menu li a {
     text-decoration: none;
-    color: #333;
     display: block;
     position: relative;
     transition: all 0.3s ease;
@@ -143,6 +147,12 @@
     padding: 20px 40px;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border: #f1b95dfb solid 2px;
+}
+
+.relogio-container:hover {
+
+    border: #f07421fb solid 5px;
 }
 
 #relogio {

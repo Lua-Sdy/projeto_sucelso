@@ -43,6 +43,9 @@ button{
     margin: 0 auto;
     padding: 10px;
 }
+.center img{
+    transform: scale(0.2);
+}
 .center label{
     margin: 0px;
     justify-items: left;
