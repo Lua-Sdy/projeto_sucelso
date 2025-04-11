@@ -713,28 +713,32 @@ function salvarAlteracoesHorarios() {
 }
 
 
+document.getElementById("gerarPdf").addEventListener("click", () => {
+    const lista = document.getElementById("visualizacao-lista");
+    const semanal = document.getElementById("visualizacao-semanal");
 
-document.getElementById('gerarPdf')?.addEventListener('click', function() {
-    // Agora acessa o .value do input corretamente
-    const nomeTurma = document.getElementById('turma_nome')?.value.trim() || 'turma-sem-nome';
+    let elementoParaPDF;
 
-    const elementoParaPdf = document.getElementById('areaPdf');
-    
-    const opt = {
-        margin: 10,
-        filename: `${nomeTurma}.pdf`, // Nome dinâmico baseado na turma
-        image: { type: 'jpeg', quality: 0.98 },
-        html2canvas: { 
-            scale: 2,
-            logging: true,
-            useCORS: true
-        },
-        jsPDF: { 
-            unit: 'mm', 
-            format: 'a4', 
-            orientation: 'portrait' 
-        }
-    };
+    // Verifica qual tabela está visível
+    if (lista.style.display !== "none") {
+        elementoParaPDF = lista;
+    } else if (semanal.style.display !== "none") {
+        elementoParaPDF = semanal;
+    } else {
+        alert("Nenhuma tabela está visível para gerar o PDF.");
+        return;
+    }
 
-    html2pdf().set(opt).from(document.body).save();
+    // Captura a tabela com html2canvas
+    html2canvas(elementoParaPDF).then(canvas => {
+        const imgData = canvas.toDataURL('image/png');
+        const pdf = new jspdf.jsPDF('p', 'mm', 'a4');
+
+        const imgProps = pdf.getImageProperties(imgData);
+        const pdfWidth = pdf.internal.pageSize.getWidth();
+        const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
+
+        pdf.addImage(imgData, 'PNG', 0, 0, pdfWidth, pdfHeight);
+        pdf.save('horarios.pdf');
+    });
 });

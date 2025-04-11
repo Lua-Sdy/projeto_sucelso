@@ -149,7 +149,6 @@ function gerarVisualizacaoSemanal() {
         corpoSemanal.appendChild(novaLinha);
     });
 }
-
 function aplicarFiltroData() {
     const dataSelecionada = document.getElementById('data-filtro').value;
     alert(`Filtrando pela data: ${dataSelecionada}`);

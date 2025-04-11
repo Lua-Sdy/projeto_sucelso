@@ -59,6 +59,7 @@
 
             <div class="barra-acoes">
                 <button class="btn-acao btn-salvar" onclick="salvarAlteracoesHorarios()">Salvar Horários</button>
+                <button id="gerarPdf" class="botao-pdf">Gerar PDF</button>
             </div>
 
             <!-- Visualização em lista -->
@@ -86,6 +87,7 @@
                             <td class="acoes-cell">
                                 <button class="btn-acao btn-editar" onclick="habilitarEdicao(this)">Editar</button>
                                 <button class="btn-acao btn-excluir" onclick="excluirLinha(this)">Excluir</button>
+                               
                             </td>
                         </tr>
 
@@ -93,7 +95,6 @@
                 </table>
             </div>
 
-            <!-- Visualização semanal -->
             <div class="tabela-container visualizacao-semanal" id="visualizacao-semanal">
                 <table class="tabela-horario">
                     <thead>
@@ -111,7 +112,6 @@
                     </tbody>
                 </table>
             </div>
-        </div>
     </main>
     </div>
     </header>
@@ -134,6 +134,9 @@
     <script src="../js/painel.js"></script>
     <script src="../js/pag_edicao.js"></script>
     <script src="../js/script.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
 </body>
 
 </html>
